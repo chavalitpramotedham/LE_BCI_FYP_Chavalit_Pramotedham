@@ -1,0 +1,705 @@
+fileFormatVersion: 2
+guid: c9a974eaa3feaf74fa119e13a6db73ca
+ModelImporter:
+  serializedVersion: 21100
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Bip05
+  - first:
+      1: 100002
+    second: Bip05 Head
+  - first:
+      1: 100004
+    second: Bip05 HeadNub
+  - first:
+      1: 100006
+    second: Bip05 L Calf
+  - first:
+      1: 100008
+    second: Bip05 L Clavicle
+  - first:
+      1: 100010
+    second: Bip05 L Finger0
+  - first:
+      1: 100012
+    second: Bip05 L Finger01
+  - first:
+      1: 100014
+    second: Bip05 L Finger02
+  - first:
+      1: 100016
+    second: Bip05 L Finger0Nub
+  - first:
+      1: 100018
+    second: Bip05 L Foot
+  - first:
+      1: 100020
+    second: Bip05 L Forearm
+  - first:
+      1: 100022
+    second: Bip05 L Hand
+  - first:
+      1: 100024
+    second: Bip05 L Thigh
+  - first:
+      1: 100026
+    second: Bip05 L Toe0
+  - first:
+      1: 100028
+    second: Bip05 L Toe0Nub
+  - first:
+      1: 100030
+    second: Bip05 L UpperArm
+  - first:
+      1: 100032
+    second: Bip05 Neck
+  - first:
+      1: 100034
+    second: Bip05 Pelvis
+  - first:
+      1: 100036
+    second: Bip05 R Calf
+  - first:
+      1: 100038
+    second: Bip05 R Clavicle
+  - first:
+      1: 100040
+    second: Bip05 R Finger0
+  - first:
+      1: 100042
+    second: Bip05 R Finger01
+  - first:
+      1: 100044
+    second: Bip05 R Finger02
+  - first:
+      1: 100046
+    second: Bip05 R Finger0Nub
+  - first:
+      1: 100048
+    second: Bip05 R Foot
+  - first:
+      1: 100050
+    second: Bip05 R Forearm
+  - first:
+      1: 100052
+    second: Bip05 R Hand
+  - first:
+      1: 100054
+    second: Bip05 R Thigh
+  - first:
+      1: 100056
+    second: Bip05 R Toe0
+  - first:
+      1: 100058
+    second: Bip05 R Toe0Nub
+  - first:
+      1: 100060
+    second: Bip05 R UpperArm
+  - first:
+      1: 100062
+    second: Bip05 Spine
+  - first:
+      1: 100064
+    second: Bip05 Spine1
+  - first:
+      1: 100066
+    second: Bip05 Spine2
+  - first:
+      1: 100068
+    second: //RootNode
+  - first:
+      4: 400000
+    second: Bip05
+  - first:
+      4: 400002
+    second: Bip05 Head
+  - first:
+      4: 400004
+    second: Bip05 HeadNub
+  - first:
+      4: 400006
+    second: Bip05 L Calf
+  - first:
+      4: 400008
+    second: Bip05 L Clavicle
+  - first:
+      4: 400010
+    second: Bip05 L Finger0
+  - first:
+      4: 400012
+    second: Bip05 L Finger01
+  - first:
+      4: 400014
+    second: Bip05 L Finger02
+  - first:
+      4: 400016
+    second: Bip05 L Finger0Nub
+  - first:
+      4: 400018
+    second: Bip05 L Foot
+  - first:
+      4: 400020
+    second: Bip05 L Forearm
+  - first:
+      4: 400022
+    second: Bip05 L Hand
+  - first:
+      4: 400024
+    second: Bip05 L Thigh
+  - first:
+      4: 400026
+    second: Bip05 L Toe0
+  - first:
+      4: 400028
+    second: Bip05 L Toe0Nub
+  - first:
+      4: 400030
+    second: Bip05 L UpperArm
+  - first:
+      4: 400032
+    second: Bip05 Neck
+  - first:
+      4: 400034
+    second: Bip05 Pelvis
+  - first:
+      4: 400036
+    second: Bip05 R Calf
+  - first:
+      4: 400038
+    second: Bip05 R Clavicle
+  - first:
+      4: 400040
+    second: Bip05 R Finger0
+  - first:
+      4: 400042
+    second: Bip05 R Finger01
+  - first:
+      4: 400044
+    second: Bip05 R Finger02
+  - first:
+      4: 400046
+    second: Bip05 R Finger0Nub
+  - first:
+      4: 400048
+    second: Bip05 R Foot
+  - first:
+      4: 400050
+    second: Bip05 R Forearm
+  - first:
+      4: 400052
+    second: Bip05 R Hand
+  - first:
+      4: 400054
+    second: Bip05 R Thigh
+  - first:
+      4: 400056
+    second: Bip05 R Toe0
+  - first:
+      4: 400058
+    second: Bip05 R Toe0Nub
+  - first:
+      4: 400060
+    second: Bip05 R UpperArm
+  - first:
+      4: 400062
+    second: Bip05 Spine
+  - first:
+      4: 400064
+    second: Bip05 Spine1
+  - first:
+      4: 400066
+    second: Bip05 Spine2
+  - first:
+      4: 400068
+    second: //RootNode
+  - first:
+      74: 7400000
+    second: keeper1
+  - first:
+      74: 7400002
+    second: keeper2
+  - first:
+      74: 7400004
+    second: keeper3
+  - first:
+      95: 9500000
+    second: //RootNode
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: keeper1
+      takeName: PLAYERS_rig_unity
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bip05
+        weight: 1
+      - path: Bip05/Bip05 Pelvis
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 L Thigh
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 L Thigh/Bip05 L Calf
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 L Thigh/Bip05 L Calf/Bip05 L Foot
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 L Thigh/Bip05 L Calf/Bip05 L Foot/Bip05
+          L Toe0
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 L Thigh/Bip05 L Calf/Bip05 L Foot/Bip05
+          L Toe0/Bip05 L Toe0Nub
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 R Thigh
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 R Thigh/Bip05 R Calf
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 R Thigh/Bip05 R Calf/Bip05 R Foot
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 R Thigh/Bip05 R Calf/Bip05 R Foot/Bip05
+          R Toe0
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 R Thigh/Bip05 R Calf/Bip05 R Foot/Bip05
+          R Toe0/Bip05 R Toe0Nub
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          Head
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          Head/Bip05 HeadNub
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm/Bip05 L Hand
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm/Bip05 L Hand/Bip05 L Finger0
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm/Bip05 L Hand/Bip05 L Finger0/Bip05
+          L Finger01
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm/Bip05 L Hand/Bip05 L Finger0/Bip05
+          L Finger01/Bip05 L Finger02
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm/Bip05 L Hand/Bip05 L Finger0/Bip05
+          L Finger01/Bip05 L Finger02/Bip05 L Finger0Nub
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm/Bip05 R Hand
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm/Bip05 R Hand/Bip05 R Finger0
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm/Bip05 R Hand/Bip05 R Finger0/Bip05
+          R Finger01
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm/Bip05 R Hand/Bip05 R Finger0/Bip05
+          R Finger01/Bip05 R Finger02
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm/Bip05 R Hand/Bip05 R Finger0/Bip05
+          R Finger01/Bip05 R Finger02/Bip05 R Finger0Nub
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: keeper2
+      takeName: PLAYERS_rig_unity
+      internalID: 0
+      firstFrame: 95
+      lastFrame: 179
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bip05
+        weight: 1
+      - path: Bip05/Bip05 Pelvis
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 L Thigh
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 L Thigh/Bip05 L Calf
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 L Thigh/Bip05 L Calf/Bip05 L Foot
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 L Thigh/Bip05 L Calf/Bip05 L Foot/Bip05
+          L Toe0
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 L Thigh/Bip05 L Calf/Bip05 L Foot/Bip05
+          L Toe0/Bip05 L Toe0Nub
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 R Thigh
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 R Thigh/Bip05 R Calf
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 R Thigh/Bip05 R Calf/Bip05 R Foot
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 R Thigh/Bip05 R Calf/Bip05 R Foot/Bip05
+          R Toe0
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 R Thigh/Bip05 R Calf/Bip05 R Foot/Bip05
+          R Toe0/Bip05 R Toe0Nub
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          Head
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          Head/Bip05 HeadNub
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm/Bip05 L Hand
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm/Bip05 L Hand/Bip05 L Finger0
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm/Bip05 L Hand/Bip05 L Finger0/Bip05
+          L Finger01
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm/Bip05 L Hand/Bip05 L Finger0/Bip05
+          L Finger01/Bip05 L Finger02
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm/Bip05 L Hand/Bip05 L Finger0/Bip05
+          L Finger01/Bip05 L Finger02/Bip05 L Finger0Nub
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm/Bip05 R Hand
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm/Bip05 R Hand/Bip05 R Finger0
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm/Bip05 R Hand/Bip05 R Finger0/Bip05
+          R Finger01
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm/Bip05 R Hand/Bip05 R Finger0/Bip05
+          R Finger01/Bip05 R Finger02
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm/Bip05 R Hand/Bip05 R Finger0/Bip05
+          R Finger01/Bip05 R Finger02/Bip05 R Finger0Nub
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: keeper3
+      takeName: PLAYERS_rig_unity
+      internalID: 0
+      firstFrame: 184
+      lastFrame: 284
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bip05
+        weight: 1
+      - path: Bip05/Bip05 Pelvis
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 L Thigh
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 L Thigh/Bip05 L Calf
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 L Thigh/Bip05 L Calf/Bip05 L Foot
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 L Thigh/Bip05 L Calf/Bip05 L Foot/Bip05
+          L Toe0
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 L Thigh/Bip05 L Calf/Bip05 L Foot/Bip05
+          L Toe0/Bip05 L Toe0Nub
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 R Thigh
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 R Thigh/Bip05 R Calf
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 R Thigh/Bip05 R Calf/Bip05 R Foot
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 R Thigh/Bip05 R Calf/Bip05 R Foot/Bip05
+          R Toe0
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 R Thigh/Bip05 R Calf/Bip05 R Foot/Bip05
+          R Toe0/Bip05 R Toe0Nub
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          Head
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          Head/Bip05 HeadNub
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm/Bip05 L Hand
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm/Bip05 L Hand/Bip05 L Finger0
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm/Bip05 L Hand/Bip05 L Finger0/Bip05
+          L Finger01
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm/Bip05 L Hand/Bip05 L Finger0/Bip05
+          L Finger01/Bip05 L Finger02
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          L Clavicle/Bip05 L UpperArm/Bip05 L Forearm/Bip05 L Hand/Bip05 L Finger0/Bip05
+          L Finger01/Bip05 L Finger02/Bip05 L Finger0Nub
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm/Bip05 R Hand
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm/Bip05 R Hand/Bip05 R Finger0
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm/Bip05 R Hand/Bip05 R Finger0/Bip05
+          R Finger01
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm/Bip05 R Hand/Bip05 R Finger0/Bip05
+          R Finger01/Bip05 R Finger02
+        weight: 1
+      - path: Bip05/Bip05 Pelvis/Bip05 Spine/Bip05 Spine1/Bip05 Spine2/Bip05 Neck/Bip05
+          R Clavicle/Bip05 R UpperArm/Bip05 R Forearm/Bip05 R Hand/Bip05 R Finger0/Bip05
+          R Finger01/Bip05 R Finger02/Bip05 R Finger0Nub
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 0.01
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
