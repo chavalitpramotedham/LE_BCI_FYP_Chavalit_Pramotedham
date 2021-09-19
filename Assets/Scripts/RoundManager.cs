@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 
 public class RoundManager : MonoBehaviour
@@ -29,6 +30,10 @@ public class RoundManager : MonoBehaviour
     public GameObject pointsPanel;
     public GameObject countdownPanel;
 
+    public GameObject floodLights;
+
+    private InputDevice targetDevice;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,12 +46,26 @@ public class RoundManager : MonoBehaviour
         kickAimPanel.SetActive(false);
         pointsPanel.SetActive(false);
 
+        floodLights.GetComponent<FloodLightController>().setFloodLightsInactive();
+
+        List<InputDevice> devices = new List<InputDevice>();
+        InputDeviceCharacteristics rightControllerCharacteristics = InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
+
+        InputDevices.GetDevicesWithCharacteristics(rightControllerCharacteristics, devices);
+
+        if (devices.Count > 0)
+        {
+            targetDevice = devices[0];
+        }
+
         StartCoroutine("ReadyCountdown");
     }
 
     // Update is called once per frame
     void Update()
     {
+        targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue);
+
         if (started && !inStage) {
             switch (stage)
             {
@@ -82,11 +101,20 @@ public class RoundManager : MonoBehaviour
             inStage = false;
             stage = 0;
         }
+
+        if (triggerValue > 0.1f && stage == 5 && !inStage)
+        {
+            Debug.Log("trigger pressed: " + triggerValue);
+            inStage = false;
+            stage = 0;
+        }
     }
 
     private IEnumerator startStage0()
     {
         inStage = true;
+
+        floodLights.GetComponent<FloodLightController>().setFloodLightsGreen();
 
         targetManager.startTargetRound();
 
@@ -109,7 +137,7 @@ public class RoundManager : MonoBehaviour
 
         bciPanel.SetActive(true);
         bciPanel.GetComponent<BCIPanelBehavior>().showInstruction();
-        countdownPanel.GetComponent<CountdownPanelBehavior>().startCountdown(bciTaskTime);
+        countdownPanel.GetComponent<CountdownPanelBehavior>().startCountdown(stage, bciTaskTime);
         mainCamera.GetComponent<CameraRoundMovement>().moveForward(bciTaskTime);
 
         inputManager.startListening(bciTaskTime);
@@ -159,6 +187,8 @@ public class RoundManager : MonoBehaviour
             bciPanel.GetComponent<BCIPanelBehavior>().setResult(false);
             countdownPanel.GetComponent<CountdownPanelBehavior>().setResult(false);
 
+            floodLights.GetComponent<FloodLightController>().setFloodLightsRed();
+
             yield return new WaitForSeconds(1f);
 
             //and go to stage = 4
@@ -175,7 +205,7 @@ public class RoundManager : MonoBehaviour
         bciPanel.SetActive(false);
 
         kickAimPanel.SetActive(true);
-        countdownPanel.GetComponent<CountdownPanelBehavior>().startCountdown(kickAimTime);
+        countdownPanel.GetComponent<CountdownPanelBehavior>().startCountdown(stage, kickAimTime);
 
         gameBall.GetComponent<DrawTrajectory>().startCountdown(kickAimTime);
 
@@ -190,9 +220,15 @@ public class RoundManager : MonoBehaviour
 
         kickAimPanel.SetActive(false);
 
+        // Stop all movements, keep UI of target + path, and change title to shoot ball
+        targetManager.stopTargetMovement();
+        countdownPanel.GetComponent<CountdownPanelBehavior>().shootBall();
+        gameBall.GetComponent<BallLaunch>().setToShoot();
+
+        yield return new WaitForSeconds(1f);
+
         //Shoot!
         mainCamera.GetComponent<CameraRoundMovement>().setPlayerKick();
-        gameBall.GetComponent<BallLaunch>().setToShoot();
         gameObject.GetComponent<PointsManager>().addKick();
 
         yield return new WaitForSeconds(2.5f);
@@ -220,6 +256,7 @@ public class RoundManager : MonoBehaviour
         bciPanel.SetActive(false);
         kickAimPanel.SetActive(false);
         countdownPanel.GetComponent<CountdownPanelBehavior>().resetUI();
+        floodLights.GetComponent<FloodLightController>().setFloodLightsInactive();
 
         stage = 5;
         inStage = false;

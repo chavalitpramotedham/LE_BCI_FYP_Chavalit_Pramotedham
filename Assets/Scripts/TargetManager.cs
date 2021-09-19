@@ -107,4 +107,9 @@ public class TargetManager : MonoBehaviour
     {
         target.gameObject.GetComponent<TargetMovement>().enableMovement();
     }
+
+    public void stopTargetMovement()
+    {
+        target.gameObject.GetComponent<TargetMovement>().disableMovement();
+    }
 }

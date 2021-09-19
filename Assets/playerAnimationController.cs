@@ -26,7 +26,7 @@ public class playerAnimationController : MonoBehaviour
     public void setKick()
     {
         kicked = true;
-        transform.position += new Vector3(0, 0, 2);
+        transform.position += new Vector3(0, 0, 2f);
         anim.SetTrigger("toKick");
     }
 
@@ -51,7 +51,7 @@ public class playerAnimationController : MonoBehaviour
         float duration = 0.5f;
 
         Vector3 startpos = transform.position;
-        Vector3 endpos = transform.position + new Vector3(0, 0, -2);
+        Vector3 endpos = transform.position + new Vector3(0, 0, -2f);
 
         while (normalizedTime <= 1f)
         {

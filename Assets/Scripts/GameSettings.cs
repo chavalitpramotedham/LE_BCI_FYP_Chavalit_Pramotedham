@@ -11,7 +11,4 @@ public class GameSettings : MonoBehaviour
     [SerializeField]
     [Range(1, 10)]
     public int targetMovementSpeed = 1;
-
-    [SerializeField]
-    public bool isBCI = false;
 }

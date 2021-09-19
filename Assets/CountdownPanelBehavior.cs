@@ -12,6 +12,8 @@ public class CountdownPanelBehavior : MonoBehaviour
     public GameObject Success;
     public GameObject Failure;
 
+    public TextMeshProUGUI titleText;
+
     public Image countdownImage;
 
     public TextMeshProUGUI countdownText;
@@ -25,10 +27,19 @@ public class CountdownPanelBehavior : MonoBehaviour
         colors.Add(new Color32(0, 108, 13, 255)); // 5s left (green)
     }
 
-    public void startCountdown(float duration)
+    public void startCountdown(int stage, float duration)
     {
         Success.SetActive(false);
         Failure.SetActive(false);
+
+        if (stage == 1)
+        {
+            titleText.SetText("BCI Task");
+        }
+        else if (stage == 3)
+        {
+            titleText.SetText("Aim Target");
+        }
 
         CD.SetActive(true);
 
@@ -62,6 +73,8 @@ public class CountdownPanelBehavior : MonoBehaviour
 
     public void setResult(bool success)
     {
+        titleText.SetText("BCI Task");
+
         if (success)
         {
             CD.SetActive(false);
@@ -74,8 +87,15 @@ public class CountdownPanelBehavior : MonoBehaviour
         }
     }
 
+    public void shootBall()
+    {
+        titleText.SetText("Shoot Ball");
+    }
+
     public void resetUI()
     {
+        titleText.SetText("");
+
         Success.SetActive(false);
         Failure.SetActive(false);
 

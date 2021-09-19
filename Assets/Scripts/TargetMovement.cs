@@ -34,6 +34,11 @@ public class TargetMovement : MonoBehaviour
         move = true;
     }
 
+    public void disableMovement()
+    {
+        move = false;
+    }
+
     void Update()
     {
         if (move && !tb.getIsDown())

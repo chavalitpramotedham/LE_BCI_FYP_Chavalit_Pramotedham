@@ -47,24 +47,26 @@ public class BallLaunch : MonoBehaviour
         if (toShoot)
         {
             toShoot = false;
-            Shoot(forceV);
+            StartCoroutine(Shoot(forceV));
         }
     }
 
-    void Shoot(Vector3 ForceV)
+    private IEnumerator Shoot(Vector3 ForceV)
     {
+        
         if (isShoot)
         {
             print("Failed");
-            return;
         }
         else
         {
+            isShoot = true;
+            yield return new WaitForSeconds(1.4f);
+
             print("Shooting");
             DrawTrajectory.Instance.HideLine();
 
             rb.AddForce(ForceV);
-            isShoot = true;
 
             StartCoroutine("Countdown");
         }
@@ -91,6 +93,7 @@ public class BallLaunch : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
 
         isShoot = false;
+        toShoot = false;
     }
 
     public void setToShoot()

@@ -122,5 +122,7 @@ public class DrawTrajectory : MonoBehaviour
 
             yield return null;
         }
+
+        _lineRenderer.material.color = Color.black;
     }
 }
