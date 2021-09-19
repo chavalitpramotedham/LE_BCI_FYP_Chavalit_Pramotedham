@@ -7,6 +7,8 @@ public class CameraRoundMovement : MonoBehaviour
     private Vector3 camStartPos;
     private Vector3 camEndPos;
 
+    public GameObject player;
+
     public bool inKickingPos;
 
     // Start is called before the first frame update
@@ -22,6 +24,7 @@ public class CameraRoundMovement : MonoBehaviour
 
     public void moveForward(float time)
     {
+        player.GetComponent<playerAnimationController>().setRun();
         StartCoroutine(startMoveForward(time));
     }
 
@@ -43,6 +46,7 @@ public class CameraRoundMovement : MonoBehaviour
 
     public void moveBackward(float time)
     {
+        player.GetComponent<playerAnimationController>().setFinish();
         StartCoroutine(startMoveBackward(time));
     }
 
@@ -60,6 +64,17 @@ public class CameraRoundMovement : MonoBehaviour
         }
 
         inKickingPos = false;
+        player.GetComponent<playerAnimationController>().setRest();
+    }
+
+    public void setPlayerWait()
+    {
+        player.GetComponent<playerAnimationController>().setWait();
+    }
+
+    public void setPlayerKick()
+    {
+        player.GetComponent<playerAnimationController>().setKick();
     }
 
 }

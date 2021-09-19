@@ -134,6 +134,8 @@ public class RoundManager : MonoBehaviour
 
         if (inputManager.getActionDetected())
         {
+            mainCamera.GetComponent<CameraRoundMovement>().setPlayerWait();
+
             //If BCI output == true (or simulated = space bar is tapped)
             // indicate tick on time bar
 
@@ -189,6 +191,7 @@ public class RoundManager : MonoBehaviour
         kickAimPanel.SetActive(false);
 
         //Shoot!
+        mainCamera.GetComponent<CameraRoundMovement>().setPlayerKick();
         gameBall.GetComponent<BallLaunch>().setToShoot();
         gameObject.GetComponent<PointsManager>().addKick();
 
