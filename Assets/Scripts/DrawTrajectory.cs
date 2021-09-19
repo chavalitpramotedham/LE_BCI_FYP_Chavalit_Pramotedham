@@ -34,6 +34,8 @@ public class DrawTrajectory : MonoBehaviour
         _lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
         _lineRenderer.material.color = Color.cyan;
 
+        _lineRenderer.enabled = false;
+
         colors.Add(Color.red); //1
         colors.Add(Color.yellow);
         colors.Add(Color.green); //3
@@ -47,6 +49,8 @@ public class DrawTrajectory : MonoBehaviour
 
     public void UpdateTrajectory(Vector3 forceVector, Rigidbody rigidbody, Vector3 startingPoint)
     {
+        _lineRenderer.enabled = true;
+
         hasHitSurface = false;
 
         Vector3 velocity = (forceVector / rigidbody.mass) * Time.fixedDeltaTime;
@@ -89,6 +93,8 @@ public class DrawTrajectory : MonoBehaviour
     public void HideLine()
     {
         _lineRenderer.positionCount = 0;
+
+        _lineRenderer.enabled = false;
     }
 
     public Vector3 getHitPoint()

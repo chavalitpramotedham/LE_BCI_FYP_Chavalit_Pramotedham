@@ -26,6 +26,8 @@ public class BallLaunch : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         originalBallPos = gameObject.transform.position;
         toShoot = false;
+
+        Physics.IgnoreCollision(centerPointer.GetComponent<Collider>(), GetComponent<Collider>());
     }
 
     private void Update()

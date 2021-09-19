@@ -12,8 +12,8 @@ public class CameraRoundMovement : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        camStartPos = new Vector3(0, 1.9f, 3);
-        camEndPos = new Vector3(0, 1.9f, 8);
+        camStartPos = new Vector3(0, 1f, 0);
+        camEndPos = new Vector3(0, 1f, 8);
 
         transform.position = camStartPos;
 
