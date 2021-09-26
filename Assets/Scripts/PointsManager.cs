@@ -17,7 +17,7 @@ public class PointsManager : MonoBehaviour
     {
         resetBadge();
         updatePointsUI();
-
+        kicksText.SetText("Kicks: 0");
     }
 
     public void addPoints(int addition)

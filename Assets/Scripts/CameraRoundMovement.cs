@@ -24,7 +24,7 @@ public class CameraRoundMovement : MonoBehaviour
 
     public void moveForward(float time)
     {
-        player.GetComponent<playerAnimationController>().setRun();
+        //player.GetComponent<playerAnimationController>().setRun();
         StartCoroutine(startMoveForward(time));
     }
 
@@ -46,7 +46,7 @@ public class CameraRoundMovement : MonoBehaviour
 
     public void moveBackward(float time)
     {
-        player.GetComponent<playerAnimationController>().setFinish();
+        player.GetComponent<playerAnimationController>().setFinish(time);
         StartCoroutine(startMoveBackward(time));
     }
 
@@ -64,12 +64,12 @@ public class CameraRoundMovement : MonoBehaviour
         }
 
         inKickingPos = false;
-        player.GetComponent<playerAnimationController>().setRest();
+        //player.GetComponent<playerAnimationController>().setRest();
     }
 
     public void setPlayerWait()
     {
-        player.GetComponent<playerAnimationController>().setWait();
+        //player.GetComponent<playerAnimationController>().setWait();
     }
 
     public void setPlayerKick()

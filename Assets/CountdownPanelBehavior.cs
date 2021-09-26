@@ -40,6 +40,10 @@ public class CountdownPanelBehavior : MonoBehaviour
         {
             titleText.SetText("Aim Target");
         }
+        else if (stage == -1)
+        {
+            titleText.SetText("Rest");
+        }
 
         CD.SetActive(true);
 

@@ -79,6 +79,7 @@ public class TargetBehavior : MonoBehaviour
         }
 
         isHit = true;
+        gameObject.SetActive(false);
     }
 
     private float calculateDistance(Vector3 otherPosition)

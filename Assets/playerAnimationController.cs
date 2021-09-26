@@ -5,53 +5,34 @@ using UnityEngine;
 public class playerAnimationController : MonoBehaviour
 {
     private Animator anim;
-    private bool kicked = false;
+    private bool kicked;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
-    }
-
-    public void setRun()
-    {
-        anim.SetTrigger("toRun");
         kicked = false;
-    }
-
-    public void setWait()
-    {
-        anim.SetTrigger("toWait");
     }
 
     public void setKick()
     {
         kicked = true;
-        transform.position += new Vector3(0, 0, 2f);
         anim.SetTrigger("toKick");
+        StartCoroutine("easeAdvance");
+
     }
 
-    public void setFinish()
+    public void setFinish(float finishTime)
     {
-        anim.SetTrigger("toFinish");
+        StartCoroutine(easeReturn(finishTime));
     }
 
-    public void setRest()
-    {
-        if (kicked)
-        {
-            StartCoroutine("easeReturn");
-        }
-
-        anim.SetTrigger("toRest");
-    }
-
-    private IEnumerator easeReturn()
+    private IEnumerator easeAdvance()
     {
         float normalizedTime = 0;
-        float duration = 0.5f;
+        float duration = 2.2f;
 
         Vector3 startpos = transform.position;
-        Vector3 endpos = transform.position + new Vector3(0, 0, -2f);
+        Vector3 endpos = transform.position + new Vector3(0, 0, 1f);
 
         while (normalizedTime <= 1f)
         {
@@ -60,6 +41,32 @@ public class playerAnimationController : MonoBehaviour
             transform.position = Vector3.Lerp(startpos, endpos, normalizedTime);
 
             yield return null;
+        }
+    }
+
+    private IEnumerator easeReturn(float finishTime)
+    {
+        if (kicked)
+        {
+            kicked = false;
+
+            float normalizedTime = 0;
+
+            Vector3 startpos = transform.position;
+            Vector3 endpos = transform.position + new Vector3(0, -.025f, -2.5f);
+
+            while (normalizedTime <= 1f)
+            {
+                normalizedTime += Time.deltaTime / finishTime;
+
+                transform.position = Vector3.Lerp(startpos, endpos, normalizedTime);
+
+                yield return null;
+            }
+
+            transform.position += new Vector3(0, .025f, 1.5f);
+
+            anim.SetTrigger("toFinish");
         }
     }
 }

@@ -54,6 +54,7 @@ public class TargetManager : MonoBehaviour
         }
         else if (target.GetComponent<TargetBehavior>().getIsHit() == true)
         {
+            target.SetActive(true);
             isActivatedForRound = true;
             arrangeTarget();
         }

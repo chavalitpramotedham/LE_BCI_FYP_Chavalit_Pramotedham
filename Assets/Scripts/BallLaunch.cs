@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class BallLaunch : MonoBehaviour
 {
+    public bool atShootingStage = false;
+
     public GameObject targetSurface;
     public GameObject centerPointer;
 
@@ -25,6 +27,8 @@ public class BallLaunch : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         originalBallPos = gameObject.transform.position;
+
+        atShootingStage = false;
         toShoot = false;
 
         Physics.IgnoreCollision(centerPointer.GetComponent<Collider>(), GetComponent<Collider>());
@@ -32,28 +36,29 @@ public class BallLaunch : MonoBehaviour
 
     private void Update()
     {
-        
-        centerPointerPos = centerPointer.GetComponent<CenterPointer>().getCenterPointerVector();
-        centerPointerPos.y += 1;
-
-        Vector3 forceInit = (centerPointerPos - originalBallPos);
-        Vector3 forceV = (new Vector3(forceInit.x, forceInit.y, forceInit.z)) * forceMultiplier;
-
-        if (!isShoot)
+        if (atShootingStage)
         {
-            DrawTrajectory.Instance.UpdateTrajectory(forceV, rb, transform.position);
-        }
+            centerPointerPos = centerPointer.GetComponent<CenterPointer>().getCenterPointerVector();
+            centerPointerPos.y += 1;
 
-        if (toShoot)
-        {
-            toShoot = false;
-            StartCoroutine(Shoot(forceV));
+            Vector3 forceInit = (centerPointerPos - originalBallPos);
+            Vector3 forceV = (new Vector3(forceInit.x, forceInit.y, forceInit.z)) * forceMultiplier;
+
+            if (!isShoot)
+            {
+                DrawTrajectory.Instance.UpdateTrajectory(forceV, rb, transform.position);
+            }
+
+            if (toShoot)
+            {
+                toShoot = false;
+                StartCoroutine(Shoot(forceV));
+            }
         }
     }
 
     private IEnumerator Shoot(Vector3 ForceV)
     {
-        
         if (isShoot)
         {
             print("Failed");
@@ -61,7 +66,9 @@ public class BallLaunch : MonoBehaviour
         else
         {
             isShoot = true;
-            yield return new WaitForSeconds(1.4f);
+            atShootingStage = false;
+
+            yield return new WaitForSeconds(2f);
 
             print("Shooting");
             DrawTrajectory.Instance.HideLine();
@@ -83,15 +90,9 @@ public class BallLaunch : MonoBehaviour
             yield return null;
         }
 
-        resetBallPos();
-    }
-
-    private void resetBallPos()
-    {
-        gameObject.transform.position = originalBallPos;
+        gameObject.SetActive(false);
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-
         isShoot = false;
         toShoot = false;
     }

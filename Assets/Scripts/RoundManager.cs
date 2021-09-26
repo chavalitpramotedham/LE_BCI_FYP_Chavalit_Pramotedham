@@ -11,28 +11,28 @@ public class RoundManager : MonoBehaviour
     private int stage = 0;
     private bool inStage = false;
 
-    public float readyTime = 3f;
+    private int repetitions = 0;
+
     public float bciTaskTime = 5f;
     public float kickAimTime = 3f;
     public float finishTime = .5f;
+
+    public int maxBCIRepetitions = 2;
 
     public GameObject targetSystem;
     private TargetManager targetManager;
     private InputManager inputManager;
 
-    public GameObject mainCamera;
+    //public GameObject mainCamera;
+    public GameObject player;
 
     public GameObject gameBall;
 
-    public GameObject readyPanel;
     public GameObject bciPanel;
     public GameObject kickAimPanel;
-    public GameObject pointsPanel;
     public GameObject countdownPanel;
 
     public GameObject floodLights;
-
-    private InputDevice targetDevice;
 
     // Start is called before the first frame update
     void Start()
@@ -41,31 +41,27 @@ public class RoundManager : MonoBehaviour
 
         inputManager = gameObject.GetComponent<InputManager>();
 
-        readyPanel.SetActive(false);
+        started = false;
+
+        inStage = false;
+        stage = 0;
+
         bciPanel.SetActive(false);
         kickAimPanel.SetActive(false);
-        pointsPanel.SetActive(false);
 
         floodLights.GetComponent<FloodLightController>().setFloodLightsInactive();
+    }
 
-        List<InputDevice> devices = new List<InputDevice>();
-        InputDeviceCharacteristics rightControllerCharacteristics = InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
-
-        InputDevices.GetDevicesWithCharacteristics(rightControllerCharacteristics, devices);
-
-        if (devices.Count > 0)
-        {
-            targetDevice = devices[0];
-        }
-
-        StartCoroutine("ReadyCountdown");
+    public void startRound()
+    {
+        started = true;
+        stage = 0;
+        inStage = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue);
-
         if (started && !inStage) {
             switch (stage)
             {
@@ -95,26 +91,11 @@ public class RoundManager : MonoBehaviour
                     break;
             }
         }
-
-        if (Input.GetKeyDown("space") && stage == 5 && !inStage)
-        {
-            inStage = false;
-            stage = 0;
-        }
-
-        if (triggerValue > 0.1f && stage == 5 && !inStage)
-        {
-            Debug.Log("trigger pressed: " + triggerValue);
-            inStage = false;
-            stage = 0;
-        }
     }
 
     private IEnumerator startStage0()
     {
         inStage = true;
-
-        floodLights.GetComponent<FloodLightController>().setFloodLightsGreen();
 
         targetManager.startTargetRound();
 
@@ -127,6 +108,8 @@ public class RoundManager : MonoBehaviour
             yield return null;
         }
 
+        repetitions = 0;
+
         stage = 1;
         inStage = false;
     }
@@ -135,10 +118,10 @@ public class RoundManager : MonoBehaviour
     {
         inStage = true;
 
+        floodLights.GetComponent<FloodLightController>().setFloodLightsInactive();
+
         bciPanel.SetActive(true);
-        bciPanel.GetComponent<BCIPanelBehavior>().showInstruction();
         countdownPanel.GetComponent<CountdownPanelBehavior>().startCountdown(stage, bciTaskTime);
-        mainCamera.GetComponent<CameraRoundMovement>().moveForward(bciTaskTime);
 
         inputManager.startListening(bciTaskTime);
 
@@ -160,14 +143,13 @@ public class RoundManager : MonoBehaviour
     {
         inStage = true;
 
-        if (inputManager.getActionDetected())
+        if (inputManager.getActionDetected() || repetitions == maxBCIRepetitions)
         {
-            mainCamera.GetComponent<CameraRoundMovement>().setPlayerWait();
+            floodLights.GetComponent<FloodLightController>().setFloodLightsGreen();
 
             //If BCI output == true (or simulated = space bar is tapped)
             // indicate tick on time bar
 
-            bciPanel.GetComponent<BCIPanelBehavior>().setResult(true);
             countdownPanel.GetComponent<CountdownPanelBehavior>().setResult(true);
             targetManager.startTargetMovement();
 
@@ -175,7 +157,7 @@ public class RoundManager : MonoBehaviour
 
             // and allow aim
 
-            gameBall.GetComponent<BallLaunch>().enabled = true;
+            gameBall.GetComponent<BallLaunch>().atShootingStage = true;
             gameBall.GetComponent<DrawTrajectory>().enabled = true;
 
             stage = 3;
@@ -184,7 +166,6 @@ public class RoundManager : MonoBehaviour
         else
         {
             //else indicate X on time bar
-            bciPanel.GetComponent<BCIPanelBehavior>().setResult(false);
             countdownPanel.GetComponent<CountdownPanelBehavior>().setResult(false);
 
             floodLights.GetComponent<FloodLightController>().setFloodLightsRed();
@@ -193,8 +174,12 @@ public class RoundManager : MonoBehaviour
 
             //and go to stage = 4
 
-            stage = 4;
-            inStage = false;
+            if (repetitions < maxBCIRepetitions)
+            {
+                stage = 1;
+                inStage = false;
+                repetitions += 1;
+            }
         }
     }
 
@@ -223,18 +208,20 @@ public class RoundManager : MonoBehaviour
         // Stop all movements, keep UI of target + path, and change title to shoot ball
         targetManager.stopTargetMovement();
         countdownPanel.GetComponent<CountdownPanelBehavior>().shootBall();
+
+        //Shoot!        
+        player.GetComponent<playerAnimationController>().setKick();
         gameBall.GetComponent<BallLaunch>().setToShoot();
 
-        yield return new WaitForSeconds(1f);
-
-        //Shoot!
-        mainCamera.GetComponent<CameraRoundMovement>().setPlayerKick();
+        yield return new WaitForSeconds(2f);
+        
+        //mainCamera.GetComponent<CameraRoundMovement>().setPlayerKick();
         gameObject.GetComponent<PointsManager>().addKick();
 
         yield return new WaitForSeconds(2.5f);
 
         // Disable scripts
-        gameBall.GetComponent<BallLaunch>().enabled = false;
+        gameBall.GetComponent<BallLaunch>().atShootingStage = false;
         gameBall.GetComponent<DrawTrajectory>().enabled = false;
 
         // go to stage 4
@@ -248,41 +235,22 @@ public class RoundManager : MonoBehaviour
 
         // 6. Wait 2.5 seconds (as usual) for target&ball to drop
 
-        mainCamera.GetComponent<CameraRoundMovement>().moveBackward(finishTime);
+        player.GetComponent<playerAnimationController>().setFinish(finishTime);
 
         yield return new WaitForSeconds(finishTime);
 
         targetManager.isActivatedForRound = false;
+
+        started = false;
+        inStage = false;
+        stage = 0;
+
         bciPanel.SetActive(false);
         kickAimPanel.SetActive(false);
+
         countdownPanel.GetComponent<CountdownPanelBehavior>().resetUI();
         floodLights.GetComponent<FloodLightController>().setFloodLightsInactive();
 
-        stage = 5;
-        inStage = false;
-    }
-
-    private IEnumerator ReadyCountdown()
-    {
-        float normalizedTime = 0;
-
-        while (normalizedTime <= 1f)
-        {
-            readyPanel.SetActive(true);
-
-            normalizedTime += Time.deltaTime / readyTime;
-
-            int roundedTime = 1 + (int)(readyTime - (normalizedTime * readyTime));
-
-            readyPanel.GetComponent<ReadyPanelBehavior>().updateCountdown(roundedTime);
-
-            yield return null;
-        }
-
-        readyPanel.SetActive(false);
-        pointsPanel.SetActive(true);
-
-        started = true;
-
+        GetComponent<GameManager>().finishRound();
     }
 }

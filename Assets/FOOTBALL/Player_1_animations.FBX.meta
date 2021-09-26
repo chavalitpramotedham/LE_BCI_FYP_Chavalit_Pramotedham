@@ -402,6 +402,9 @@ ModelImporter:
   - first:
       74: 8632458064044735829
     second: actualKick
+  - first:
+      74: -3529188568760709794
+    second: finishKick
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -684,8 +687,8 @@ ModelImporter:
       name: waitForKick
       takeName: PLAYERS_rig_unity
       internalID: 0
-      firstFrame: 148
-      lastFrame: 151
+      firstFrame: 155
+      lastFrame: 156
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -809,8 +812,8 @@ ModelImporter:
       name: actualKick2
       takeName: PLAYERS_rig_unity
       internalID: 0
-      firstFrame: 186
-      lastFrame: 226
+      firstFrame: 155
+      lastFrame: 235
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -934,8 +937,133 @@ ModelImporter:
       name: actualKick
       takeName: PLAYERS_rig_unity
       internalID: 0
-      firstFrame: 101
-      lastFrame: 148
+      firstFrame: 79
+      lastFrame: 153
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bip02
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 L Thigh01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 L Thigh01/Bip01 L Calf01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 L Thigh01/Bip01 L Calf01/Bip01
+          L Foot01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 L Thigh01/Bip01 L Calf01/Bip01
+          L Foot01/Bip01 L Toe01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 L Thigh01/Bip01 L Calf01/Bip01
+          L Foot01/Bip01 L Toe01/Bip01 L Toe01 1
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 L Thigh01/Bip01 L Calf01/Bip01
+          L Foot01/Bip01 L Toe01/Bip01 L Toe01 1/Bip01 L Toe02
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 L Thigh01/Bip01 L Calf01/Bip01
+          L Foot01/Bip01 L Toe01/Bip01 L Toe01 1/Bip01 L Toe02/Bip01 L Toe0Nub01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 R Thigh01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 R Thigh01/Bip01 R Calf01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 R Thigh01/Bip01 R Calf01/Bip01
+          R Foot01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 R Thigh01/Bip01 R Calf01/Bip01
+          R Foot01/Bip01 R Toe01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 R Thigh01/Bip01 R Calf01/Bip01
+          R Foot01/Bip01 R Toe01/Bip01 R Toe01 1
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 R Thigh01/Bip01 R Calf01/Bip01
+          R Foot01/Bip01 R Toe01/Bip01 R Toe01 1/Bip01 R Toe02
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 R Thigh01/Bip01 R Calf01/Bip01
+          R Foot01/Bip01 R Toe01/Bip01 R Toe01 1/Bip01 R Toe02/Bip01 R Toe0Nub01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 Spine04
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 Spine04/Bip01 Neck01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 Spine04/Bip01 Neck01/Bip01
+          Head01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 Spine04/Bip01 Neck01/Bip01
+          Head01/Bip01 HeadNub01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 Spine04/Bip01 Neck01/Bip01
+          L Clavicle01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 Spine04/Bip01 Neck01/Bip01
+          L Clavicle01/Bip01 L UpperArm01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 Spine04/Bip01 Neck01/Bip01
+          L Clavicle01/Bip01 L UpperArm01/Bip01 L Forearm01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 Spine04/Bip01 Neck01/Bip01
+          L Clavicle01/Bip01 L UpperArm01/Bip01 L Forearm01/Bip01 L Hand01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 Spine04/Bip01 Neck01/Bip01
+          L Clavicle01/Bip01 L UpperArm01/Bip01 L Forearm01/Bip01 L Hand01/Bip01
+          L Finger03
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 Spine04/Bip01 Neck01/Bip01
+          L Clavicle01/Bip01 L UpperArm01/Bip01 L Forearm01/Bip01 L Hand01/Bip01
+          L Finger03/Bip01 L Finger0Nub01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 Spine04/Bip01 Neck01/Bip01
+          R Clavicle01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 Spine04/Bip01 Neck01/Bip01
+          R Clavicle01/Bip01 R UpperArm01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 Spine04/Bip01 Neck01/Bip01
+          R Clavicle01/Bip01 R UpperArm01/Bip01 R Forearm01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 Spine04/Bip01 Neck01/Bip01
+          R Clavicle01/Bip01 R UpperArm01/Bip01 R Forearm01/Bip01 R Hand01
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 Spine04/Bip01 Neck01/Bip01
+          R Clavicle01/Bip01 R UpperArm01/Bip01 R Forearm01/Bip01 R Hand01/Bip01
+          R Finger03
+        weight: 1
+      - path: Bip02/Bip01 Pelvis01/Bip01 Spine03/Bip01 Spine04/Bip01 Neck01/Bip01
+          R Clavicle01/Bip01 R UpperArm01/Bip01 R Forearm01/Bip01 R Hand01/Bip01
+          R Finger03/Bip01 R Finger0Nub01
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: finishKick
+      takeName: PLAYERS_rig_unity
+      internalID: 0
+      firstFrame: 232
+      lastFrame: 240
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
