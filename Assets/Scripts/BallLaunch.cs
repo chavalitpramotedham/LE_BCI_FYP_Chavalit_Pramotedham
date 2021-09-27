@@ -72,7 +72,7 @@ public class BallLaunch : MonoBehaviour
             isShoot = true;
             atShootingStage = false;
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1.35f);
 
             GetComponent<AudioSource>().PlayOneShot(shootClip);
 
