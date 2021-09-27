@@ -5,6 +5,7 @@ using UnityEngine.XR;
 
 public class InputManager : MonoBehaviour
 {
+    public bool dataCollectionMode;
     private bool actionDetected = false;
     private bool isListening = false;
 
@@ -31,6 +32,11 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue);
+
+        if (dataCollectionMode)
+        {
+            actionDetected = true;
+        }
 
         if (triggerValue > 0.1f && isListening)
         {

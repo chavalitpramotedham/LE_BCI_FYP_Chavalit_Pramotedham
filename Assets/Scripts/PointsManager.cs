@@ -12,6 +12,7 @@ public class PointsManager : MonoBehaviour
     public TextMeshProUGUI pointsText;
     public TextMeshProUGUI kicksText;
     public Image badge;
+    public GameObject soundSystem;
 
     private void Start()
     {
@@ -22,6 +23,8 @@ public class PointsManager : MonoBehaviour
 
     public void addPoints(int addition)
     {
+        soundSystem.GetComponent<SoundSystemManager>().cheer();
+
         points += addition;
 
         setBadge(addition);

@@ -33,6 +33,7 @@ public class RoundManager : MonoBehaviour
     public GameObject countdownPanel;
 
     public GameObject floodLights;
+    public GameObject soundSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -146,6 +147,7 @@ public class RoundManager : MonoBehaviour
         if (inputManager.getActionDetected() || repetitions == maxBCIRepetitions)
         {
             floodLights.GetComponent<FloodLightController>().setFloodLightsGreen();
+            soundSystem.GetComponent<SoundSystemManager>().success();
 
             //If BCI output == true (or simulated = space bar is tapped)
             // indicate tick on time bar
@@ -168,6 +170,7 @@ public class RoundManager : MonoBehaviour
             //else indicate X on time bar
             countdownPanel.GetComponent<CountdownPanelBehavior>().setResult(false);
 
+            soundSystem.GetComponent<SoundSystemManager>().failure();
             floodLights.GetComponent<FloodLightController>().setFloodLightsRed();
 
             yield return new WaitForSeconds(1f);

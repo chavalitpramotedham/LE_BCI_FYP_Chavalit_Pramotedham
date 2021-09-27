@@ -27,8 +27,6 @@ public class BallPlatformBehavior : MonoBehaviour
 
     private IEnumerator raisePlatform(bool active)
     {
-        print("RAISING");
-
         Material[] materials = indicator.GetComponent<MeshRenderer>().materials;
         materials[0] = indicator_neutral;
         indicator.GetComponent<MeshRenderer>().materials = materials;

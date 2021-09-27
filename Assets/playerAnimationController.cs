@@ -7,6 +7,8 @@ public class playerAnimationController : MonoBehaviour
     private Animator anim;
     private bool kicked;
 
+    public GameObject mainCamera;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -32,13 +34,17 @@ public class playerAnimationController : MonoBehaviour
         float duration = 2.2f;
 
         Vector3 startpos = transform.position;
-        Vector3 endpos = transform.position + new Vector3(0, 0, 1f);
+        Vector3 endpos = transform.position + new Vector3(0.46f, 0, 1f);
+
+        Vector3 camStartPos = mainCamera.transform.position;
+        Vector3 camEndPos = camStartPos + new Vector3(0, 0, 2.75f);
 
         while (normalizedTime <= 1f)
         {
             normalizedTime += Time.deltaTime / duration;
 
             transform.position = Vector3.Lerp(startpos, endpos, normalizedTime);
+            mainCamera.transform.position = Vector3.Lerp(camStartPos, camEndPos, normalizedTime);
 
             yield return null;
         }
@@ -55,16 +61,20 @@ public class playerAnimationController : MonoBehaviour
             Vector3 startpos = transform.position;
             Vector3 endpos = transform.position + new Vector3(0, -.025f, -2.5f);
 
+            Vector3 camStartPos = mainCamera.transform.position;
+            Vector3 camEndPos = camStartPos - new Vector3(0, 0, 2.75f);
+
             while (normalizedTime <= 1f)
             {
                 normalizedTime += Time.deltaTime / finishTime;
 
                 transform.position = Vector3.Lerp(startpos, endpos, normalizedTime);
+                mainCamera.transform.position = Vector3.Lerp(camStartPos, camEndPos, normalizedTime);
 
                 yield return null;
             }
 
-            transform.position += new Vector3(0, .025f, 1.5f);
+            transform.position += new Vector3(-0.46f, .025f, 1.5f);
 
             anim.SetTrigger("toFinish");
         }

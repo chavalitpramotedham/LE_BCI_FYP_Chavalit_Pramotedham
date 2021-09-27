@@ -22,6 +22,8 @@ public class BallLaunch : MonoBehaviour
 
     public bool toShoot = false;
 
+    private AudioClip shootClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,8 @@ public class BallLaunch : MonoBehaviour
         toShoot = false;
 
         Physics.IgnoreCollision(centerPointer.GetComponent<Collider>(), GetComponent<Collider>());
+
+        shootClip = (AudioClip)Resources.Load("Sounds/shoot");
     }
 
     private void Update()
@@ -61,7 +65,7 @@ public class BallLaunch : MonoBehaviour
     {
         if (isShoot)
         {
-            print("Failed");
+            // nothing
         }
         else
         {
@@ -70,7 +74,8 @@ public class BallLaunch : MonoBehaviour
 
             yield return new WaitForSeconds(2f);
 
-            print("Shooting");
+            GetComponent<AudioSource>().PlayOneShot(shootClip);
+
             DrawTrajectory.Instance.HideLine();
 
             rb.AddForce(ForceV);

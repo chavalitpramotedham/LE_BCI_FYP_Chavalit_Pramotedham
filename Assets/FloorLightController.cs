@@ -50,8 +50,6 @@ public class FloorLightController : MonoBehaviour
             yield return null;
         }
 
-        print("TYPE: " + active);
-
         if (active)
         {
             Material[] materials = light_1.GetComponent<MeshRenderer>().materials;

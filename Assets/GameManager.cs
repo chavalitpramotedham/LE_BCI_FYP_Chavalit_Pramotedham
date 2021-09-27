@@ -6,13 +6,9 @@ using UnityEngine.XR;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    [Range(1, 4)]
-    public int sequencesPerGame = 1;
-
-    [SerializeField]
-    [Range(1, 25)]
-    public int roundsPerSequencePerType = 10;
+    private bool dataCollectionMode;
+    private int sequencesPerGame;
+    private int roundsPerSequencePerType;
 
     private int roundsPerSequence;
 
@@ -28,17 +24,29 @@ public class GameManager : MonoBehaviour
     private RestManager restManager;
 
     public GameObject startPanel;
+
     public GameObject readyPanel;
     public float readyTime = 3f;
+
+    public GameObject roundPanel;
+    
     public GameObject pointsPanel;
 
+
     public GameObject ballSpawner;
+
+    public GameObject soundSystem;
 
     private InputDevice targetDevice;
 
     // Start is called before the first frame update
     void Awake()
     {
+        // Get Game Settings
+        dataCollectionMode = GetComponent<GameSettings>().dataCollectionMode;
+        sequencesPerGame = GetComponent<GameSettings>().sequencesPerGame;
+        roundsPerSequencePerType = GetComponent<GameSettings>().roundsPerSequencePerType;
+
         // Attach target device
 
         List<InputDevice> devices = new List<InputDevice>();
@@ -58,44 +66,70 @@ public class GameManager : MonoBehaviour
         startPanel.SetActive(true);
         pointsPanel.SetActive(true);
         readyPanel.SetActive(false);
+        roundPanel.SetActive(false);
+
+        // Set Collection Mechanism
+
+        GetComponent<InputManager>().dataCollectionMode = dataCollectionMode;
 
         // Create game sequences
 
-        roundsPerSequence = 2 * roundsPerSequencePerType;
-
-        for (int i = 0; i < sequencesPerGame; i++)
+        if (dataCollectionMode)
         {
-            List<bool> sequence = new List<bool>();
-            int round_count = 0;
-            int rest_count = 0;
+            roundsPerSequence = 2 * roundsPerSequencePerType;
 
-            System.Random rand = new System.Random();
-
-            for (int j = 0; j < roundsPerSequence; j++)
+            for (int i = 0; i < sequencesPerGame; i++)
             {
-                if (round_count < roundsPerSequencePerType && rest_count < roundsPerSequencePerType)
-                {
-                    if (round_count <= rest_count - 2)
-                    {
-                        sequence.Add(true);
-                        round_count += 1;
-                    }
-                    else if (rest_count <= round_count - 2)
-                    {
-                        sequence.Add(false);
-                        rest_count += 1;
-                    }
-                    else
-                    {
-                        int value = rand.Next(0, 2);
+                List<bool> sequence = new List<bool>();
+                int round_count = 0;
+                int rest_count = 0;
 
-                        if (value == 0)
+                System.Random rand = new System.Random();
+
+                for (int j = 0; j < roundsPerSequence; j++)
+                {
+                    if (round_count < roundsPerSequencePerType && rest_count < roundsPerSequencePerType)
+                    {
+                        if (round_count <= rest_count - 2)
+                        {
+                            sequence.Add(true);
+                            round_count += 1;
+                        }
+                        else if (rest_count <= round_count - 2)
                         {
                             sequence.Add(false);
                             rest_count += 1;
                         }
-
                         else
+                        {
+                            int value = rand.Next(0, 2);
+
+                            if (value == 0)
+                            {
+                                sequence.Add(false);
+                                rest_count += 1;
+                            }
+
+                            else
+                            {
+                                sequence.Add(true);
+                                round_count += 1;
+                            }
+                        }
+                    }
+
+                    else if (rest_count < roundsPerSequencePerType && round_count == roundsPerSequencePerType)
+                    {
+                        while (rest_count < roundsPerSequencePerType)
+                        {
+                            sequence.Add(false);
+                            rest_count += 1;
+                        }
+                    }
+
+                    else if (round_count < roundsPerSequencePerType && rest_count == roundsPerSequencePerType)
+                    {
+                        while (round_count < roundsPerSequencePerType)
                         {
                             sequence.Add(true);
                             round_count += 1;
@@ -103,26 +137,23 @@ public class GameManager : MonoBehaviour
                     }
                 }
 
-                else if (rest_count < roundsPerSequencePerType && round_count == roundsPerSequencePerType)
-                {
-                    while (rest_count < roundsPerSequencePerType)
-                    {
-                        sequence.Add(false);
-                        rest_count += 1;
-                    }
-                }
-
-                else if (round_count < roundsPerSequencePerType && rest_count == roundsPerSequencePerType)
-                {
-                    while (round_count < roundsPerSequencePerType)
-                    {
-                        sequence.Add(true);
-                        round_count += 1;
-                    }
-                }
+                sequences.Add(sequence);
             }
+        }
+        else
+        {
+            roundsPerSequence = roundsPerSequencePerType;
 
-            sequences.Add(sequence);
+            for (int i = 0; i < sequencesPerGame; i++)
+            {
+                List<bool> sequence = new List<bool>();
+
+                for (int j = 0; j < roundsPerSequence; j++)
+                {
+                    sequence.Add(true);
+                }
+                sequences.Add(sequence);
+            }
         }
     }
 
@@ -169,6 +200,8 @@ public class GameManager : MonoBehaviour
     {
         startPanel.SetActive(false);
 
+        soundSystem.GetComponent<SoundSystemManager>().start_sequence();
+
         float normalizedTime = 0;
 
         while (normalizedTime <= 1f)
@@ -194,6 +227,9 @@ public class GameManager : MonoBehaviour
     private IEnumerator nextRound()
     {
         in_round = true;
+        roundPanel.SetActive(true);
+        roundPanel.GetComponent<RoundPanelBehavior>().updateUI(cur_round, roundsPerSequence);
+
         bool nextRoundActive = sequences[cur_sequence][cur_round];
 
         print("SEQ: "+cur_sequence+ " ROUND: "+cur_round + " TYPE: "+sequences[cur_sequence][cur_round]);
@@ -202,22 +238,28 @@ public class GameManager : MonoBehaviour
 
         ballSpawner.GetComponent<BallSpawner>().startRound(nextRoundActive);
 
-        yield return new WaitForSeconds(3f);
+        for (int i = 0; i < 3; i++)
+        {
+            soundSystem.GetComponent<SoundSystemManager>().count();
+            yield return new WaitForSeconds(1f);
+        }
+
+        roundPanel.SetActive(false);
 
         if (nextRoundActive)
         {
+            soundSystem.GetComponent<SoundSystemManager>().round();
             roundManager.startRound();
         }
         else
         {
+            soundSystem.GetComponent<SoundSystemManager>().rest();
             restManager.startRest();
         }
     }
 
     public void finishRound()
     {
-        print("Finish Round");
-
         cur_round += 1;
         in_round = false;
 
@@ -229,9 +271,12 @@ public class GameManager : MonoBehaviour
         cur_sequence += 1;
         in_sequence = false;
 
+        soundSystem.GetComponent<SoundSystemManager>().finish_sequence();
+
         startPanel.SetActive(true);
         pointsPanel.SetActive(true);
         readyPanel.SetActive(false);
+        roundPanel.SetActive(false);
     }
 
     
