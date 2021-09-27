@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     
     public GameObject pointsPanel;
 
+    public GameObject endPanel;
+
 
     public GameObject ballSpawner;
 
@@ -67,6 +69,7 @@ public class GameManager : MonoBehaviour
         pointsPanel.SetActive(true);
         readyPanel.SetActive(false);
         roundPanel.SetActive(false);
+        endPanel.SetActive(false);
 
         // Set Collection Mechanism
 
@@ -187,13 +190,6 @@ public class GameManager : MonoBehaviour
                 finishSequence();
             }
         }
-
-        // Finish Game
-
-        if (cur_sequence == sequencesPerGame)
-        {
-            print("END");
-        }
     }
 
     private IEnumerator startSequence()
@@ -273,10 +269,23 @@ public class GameManager : MonoBehaviour
 
         soundSystem.GetComponent<SoundSystemManager>().finish_sequence();
 
-        startPanel.SetActive(true);
         pointsPanel.SetActive(true);
         readyPanel.SetActive(false);
         roundPanel.SetActive(false);
+
+        // Finish Game
+
+        if (cur_sequence == sequencesPerGame)
+        {
+            endPanel.SetActive(true);
+            print("END");
+
+            // initiate end sequence (write all files, etc.)
+        }
+        else
+        {
+            startPanel.SetActive(true);
+        }
     }
 
     
