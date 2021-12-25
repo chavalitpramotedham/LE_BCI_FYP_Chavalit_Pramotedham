@@ -7,6 +7,8 @@ using UnityEngine.XR;
 public class GameManager : MonoBehaviour
 {
     private bool dataCollectionMode;
+    private bool isLeftSide;
+    public GameObject Avatars;
     private int sequencesPerGame;
     private int roundsPerSequencePerType;
 
@@ -46,6 +48,8 @@ public class GameManager : MonoBehaviour
     {
         // Get Game Settings
         dataCollectionMode = GetComponent<GameSettings>().dataCollectionMode;
+        isLeftSide = GetComponent<GameSettings>().isLeftSide;
+
         sequencesPerGame = GetComponent<GameSettings>().sequencesPerGame;
         roundsPerSequencePerType = GetComponent<GameSettings>().roundsPerSequencePerType;
 
@@ -74,6 +78,9 @@ public class GameManager : MonoBehaviour
         // Set Collection Mechanism
 
         GetComponent<InputManager>().dataCollectionMode = dataCollectionMode;
+
+        // Process Avatar Direction
+        Avatars.GetComponent<Avatar_Controller>().setLeftSide(isLeftSide);
 
         // Create game sequences
 

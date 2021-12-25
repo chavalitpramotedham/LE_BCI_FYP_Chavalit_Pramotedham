@@ -6,6 +6,8 @@ public class playerAnimationController : MonoBehaviour
 {
     private Animator anim;
     private bool kicked;
+    private bool isLeftSide;
+    private float x_displacement_multiplier;
 
     public GameObject mainCamera;
 
@@ -13,6 +15,20 @@ public class playerAnimationController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         kicked = false;
+    }
+
+    public void setLeftSide(bool isLeft)
+    {
+        isLeftSide = isLeft;
+
+        if (isLeftSide)
+        {
+            x_displacement_multiplier = -1;
+        }
+        else
+        {
+            x_displacement_multiplier = 1;
+        }
     }
 
     public void setKick()
@@ -34,7 +50,7 @@ public class playerAnimationController : MonoBehaviour
         float duration = 2.2f;
 
         Vector3 startpos = transform.position;
-        Vector3 endpos = transform.position + new Vector3(0.46f, 0, 1f);
+        Vector3 endpos = transform.position + new Vector3(0.46f * x_displacement_multiplier, 0, 1f);
 
         Vector3 camStartPos = mainCamera.transform.position;
         Vector3 camEndPos = camStartPos + new Vector3(0, 0, 2.75f);
@@ -59,7 +75,7 @@ public class playerAnimationController : MonoBehaviour
             float normalizedTime = 0;
 
             Vector3 startpos = transform.position;
-            Vector3 endpos = transform.position + new Vector3(0, -.025f, -2.5f);
+            Vector3 endpos = transform.position + new Vector3(0 * x_displacement_multiplier, -.025f, -2.5f);
 
             Vector3 camStartPos = mainCamera.transform.position;
             Vector3 camEndPos = camStartPos - new Vector3(0, 0, 2.75f);
@@ -74,7 +90,7 @@ public class playerAnimationController : MonoBehaviour
                 yield return null;
             }
 
-            transform.position += new Vector3(-0.46f, .025f, 1.5f);
+            transform.position += new Vector3(-0.46f * x_displacement_multiplier, .025f, 1.5f);
 
             anim.SetTrigger("toFinish");
         }

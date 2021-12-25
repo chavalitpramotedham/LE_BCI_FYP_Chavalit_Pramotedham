@@ -13,6 +13,8 @@ public class RestManager : MonoBehaviour
 
     public GameObject countdownPanel;
 
+    public GameObject restAvatar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,7 @@ public class RestManager : MonoBehaviour
         inRest = false;
 
         restPanel.SetActive(false);
+        restAvatar.SetActive(false);
     }
 
     public void startRest()
@@ -43,6 +46,8 @@ public class RestManager : MonoBehaviour
 
         restPanel.SetActive(true);
         countdownPanel.GetComponent<CountdownPanelBehavior>().startCountdown(stage, restTime);
+        restAvatar.SetActive(true);
+        restAvatar.GetComponent<Rest_Movement>().activate();
 
         float normalizedTime = 0;
 
@@ -62,6 +67,7 @@ public class RestManager : MonoBehaviour
 
         restPanel.SetActive(false);
         countdownPanel.GetComponent<CountdownPanelBehavior>().resetUI();
+        restAvatar.SetActive(false);
 
         GetComponent<GameManager>().finishRound();
     }

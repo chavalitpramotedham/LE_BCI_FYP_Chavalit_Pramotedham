@@ -8,6 +8,9 @@ public class GameSettings : MonoBehaviour
     public bool dataCollectionMode = true;
 
     [SerializeField]
+    public bool isLeftSide = false;
+
+    [SerializeField]
     [Range(1, 4)]
     public int sequencesPerGame = 1;
 
