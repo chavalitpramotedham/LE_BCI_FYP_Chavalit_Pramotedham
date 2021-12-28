@@ -201,6 +201,10 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator startSequence()
     {
+        // START Sequence (S)
+
+        DAQ_Manager.setFlag("S");
+
         startPanel.SetActive(false);
 
         soundSystem.GetComponent<SoundSystemManager>().start_sequence();
@@ -271,6 +275,10 @@ public class GameManager : MonoBehaviour
 
     private void finishSequence()
     {
+        // FINISH SEQUENCE
+
+        DAQ_Manager.setFlag("E");
+
         cur_sequence += 1;
         in_sequence = false;
 

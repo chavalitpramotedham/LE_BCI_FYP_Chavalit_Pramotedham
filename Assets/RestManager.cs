@@ -42,6 +42,10 @@ public class RestManager : MonoBehaviour
 
     private IEnumerator rest()
     {
+        // REST SEQUENCE (R)
+
+        DAQ_Manager.setFlag("R");
+
         inRest = true;
 
         restPanel.SetActive(true);
@@ -62,6 +66,10 @@ public class RestManager : MonoBehaviour
 
     private void endRest()
     {
+        // END REST (I)
+
+        DAQ_Manager.setFlag("I");
+
         started = false;
         inRest = false;
 

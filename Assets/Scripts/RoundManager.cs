@@ -96,6 +96,8 @@ public class RoundManager : MonoBehaviour
 
     private IEnumerator startStage0()
     {
+        // START TARGET ROUND & BUFFER (I)
+
         inStage = true;
 
         targetManager.startTargetRound();
@@ -117,6 +119,10 @@ public class RoundManager : MonoBehaviour
 
     private IEnumerator startStage1()
     {
+        // BCI STAGE (B)
+
+        DAQ_Manager.setFlag("B");
+
         inStage = true;
 
         floodLights.GetComponent<FloodLightController>().setFloodLightsInactive();
@@ -142,6 +148,10 @@ public class RoundManager : MonoBehaviour
 
     private IEnumerator startStage2()
     {
+        // Process action (I)
+
+        DAQ_Manager.setFlag("I");
+
         inStage = true;
 
         if (inputManager.getActionDetected() || repetitions == maxBCIRepetitions)
@@ -188,6 +198,10 @@ public class RoundManager : MonoBehaviour
 
     private IEnumerator startStage3()
     {
+        // KICK STAGE (I)
+
+        DAQ_Manager.setFlag("I");
+
         inStage = true;
 
         bciPanel.SetActive(false);
@@ -234,6 +248,8 @@ public class RoundManager : MonoBehaviour
 
     private IEnumerator startStage4()
     {
+        DAQ_Manager.setFlag("I");
+
         inStage = true;
 
         // 6. Wait 2.5 seconds (as usual) for target&ball to drop

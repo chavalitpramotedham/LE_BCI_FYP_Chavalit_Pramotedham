@@ -38,11 +38,11 @@ public class Rest_Movement : MonoBehaviour
 
         if (isLeftSide)
         {
-            movement_multiplier = -3;
+            movement_multiplier = -2;
         }
         else
         {
-            movement_multiplier = 3;
+            movement_multiplier = 2;
         }
     }
 
