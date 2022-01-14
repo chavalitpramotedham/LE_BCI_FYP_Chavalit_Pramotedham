@@ -75,6 +75,7 @@ public class RestManager : MonoBehaviour
 
         restPanel.SetActive(false);
         countdownPanel.GetComponent<CountdownPanelBehavior>().resetUI();
+        restAvatar.GetComponent<Rest_Movement>().deactivate();
         restAvatar.SetActive(false);
 
         GetComponent<GameManager>().finishRound();

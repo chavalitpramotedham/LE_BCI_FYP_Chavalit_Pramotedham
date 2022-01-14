@@ -35,6 +35,8 @@ public class RoundManager : MonoBehaviour
     public GameObject floodLights;
     public GameObject soundSystem;
 
+    public GameObject roundAvatar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +48,8 @@ public class RoundManager : MonoBehaviour
 
         inStage = false;
         stage = 0;
+
+        roundAvatar.SetActive(false);
 
         bciPanel.SetActive(false);
         kickAimPanel.SetActive(false);
@@ -130,6 +134,9 @@ public class RoundManager : MonoBehaviour
         bciPanel.SetActive(true);
         countdownPanel.GetComponent<CountdownPanelBehavior>().startCountdown(stage, bciTaskTime);
 
+        roundAvatar.SetActive(true);
+        roundAvatar.GetComponent<Round_Movement>().activate();
+
         inputManager.startListening(bciTaskTime);
 
         float normalizedTime = 0;
@@ -140,6 +147,9 @@ public class RoundManager : MonoBehaviour
 
             yield return null;
         }
+
+        roundAvatar.GetComponent<Round_Movement>().deactivate();
+        roundAvatar.SetActive(false);
 
         stage = 2;
         inStage = false;

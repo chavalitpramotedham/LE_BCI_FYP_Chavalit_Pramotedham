@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Diagnostics;
 
 public class DAQ_Manager : MonoBehaviour
 {
@@ -60,7 +61,9 @@ public class DAQ_Manager : MonoBehaviour
         {
             // log start time
 
-            DAQ_Output += " " + System.DateTime.Now.ToString() + " ";
+            System.DateTime dateTime = System.DateTime.Now;
+
+            DAQ_Output += dateTime.ToString("MM/dd/yyyy hh:mm:ss.fff tt") + "\n";
 
             // reset time
             
@@ -85,7 +88,9 @@ public class DAQ_Manager : MonoBehaviour
         {
             // add time
 
-            DAQ_Output += time_since_last.ToString("0.00");
+            DAQ_Output += time_since_last.ToString("0.000000");
+            DAQ_Output += "\n";
+
             time_since_last = 0;
 
             // add flag

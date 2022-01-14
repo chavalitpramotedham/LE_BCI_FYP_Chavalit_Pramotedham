@@ -59,7 +59,7 @@ public class Rest_Movement : MonoBehaviour
         VR_camera.GetComponent<Camera>().nearClipPlane = 0.2f;
     }
 
-    private void deactivate()
+    public void deactivate()
     {
         toMove = false;
         moving = false;
@@ -72,15 +72,10 @@ public class Rest_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (toMove && !moving && iterations < 5)
+        if (toMove && !moving)
         {
             moving = true;
             StartCoroutine("moveArm");
-        }
-
-        if (toMove && !moving && iterations == 5)
-        {
-            deactivate();
         }
     }
 
