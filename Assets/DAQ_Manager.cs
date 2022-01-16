@@ -79,7 +79,7 @@ public class DAQ_Manager : MonoBehaviour
 
             // log
 
-            print("DAQ: " + DAQ_Output);
+            updateDAQLog();
         }
 
         // if started, and flag != last_flag
@@ -99,7 +99,7 @@ public class DAQ_Manager : MonoBehaviour
 
             // log
 
-            print("DAQ: " + DAQ_Output);
+            updateDAQLog();
         }
 
         // continue
@@ -117,5 +117,11 @@ public class DAQ_Manager : MonoBehaviour
             last_flag = flag;
             in_activity = true;
         }
+    }
+
+    private static void updateDAQLog()
+    {
+        print("DAQ: " + DAQ_Output);
+        System.IO.File.WriteAllText(@"C:\Users\SCSE-CIL\Documents\DAQ_LOG\lebci_log.txt", DAQ_Output);
     }
 }
