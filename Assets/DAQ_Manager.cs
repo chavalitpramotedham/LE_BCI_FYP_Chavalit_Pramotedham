@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using System.Diagnostics;
 
 public class DAQ_Manager : MonoBehaviour
@@ -121,7 +122,13 @@ public class DAQ_Manager : MonoBehaviour
 
     private static void updateDAQLog()
     {
-        print("DAQ: " + DAQ_Output);
-        System.IO.File.WriteAllText(@"C:\Users\SCSE-CIL\Documents\DAQ_LOG\lebci_log.txt", DAQ_Output);
+        try
+        {
+            System.IO.File.WriteAllText(@"C:\Users\SCSE-CIL\Documents\DAQ_LOG\lebci_log.txt", DAQ_Output);
+        }
+        catch(Exception e)
+        {
+            print("Saving unavailable... \nDAQ: " + DAQ_Output);
+        }
     }
 }
