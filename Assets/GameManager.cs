@@ -235,7 +235,7 @@ public class GameManager : MonoBehaviour
     {
         in_round = true;
         roundPanel.SetActive(true);
-        roundPanel.GetComponent<RoundPanelBehavior>().updateUI(cur_round, roundsPerSequence);
+        roundPanel.GetComponent<RoundPanelBehavior>().updateUI(cur_sequence, sequencesPerGame, cur_round, roundsPerSequence);
 
         bool nextRoundActive = sequences[cur_sequence][cur_round];
 
