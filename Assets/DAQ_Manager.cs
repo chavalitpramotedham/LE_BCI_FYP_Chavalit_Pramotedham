@@ -124,7 +124,7 @@ public class DAQ_Manager : MonoBehaviour
     {
         try
         {
-            System.IO.File.WriteAllText(@"C:\Users\SCSE-CIL\Documents\DAQ_LOG\lebci_log.txt", DAQ_Output);
+            System.IO.File.WriteAllText(@"C:\Users\chava\OneDrive\Desktop\lebci_log.txt", DAQ_Output);
         }
         catch(Exception e)
         {

@@ -39,7 +39,7 @@ public class Round_Movement : MonoBehaviour
         iterations = 0;
         originalFootPos = foot.position;
 
-        VR_camera.GetComponent<Camera>().nearClipPlane = 0.1f;
+        VR_camera.GetComponent<Camera>().nearClipPlane = 0.2f;
     }
 
     public void deactivate()
