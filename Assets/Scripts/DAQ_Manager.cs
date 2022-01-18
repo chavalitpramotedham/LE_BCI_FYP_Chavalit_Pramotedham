@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Diagnostics;
+using LSL;
 
 public class DAQ_Manager : MonoBehaviour
 {
@@ -16,13 +17,35 @@ public class DAQ_Manager : MonoBehaviour
 
     const string FLAG_START_SEQUENCE = "S"; // when press space/r-trigger
     const string FLAG_IDLE = "I"; // countdowns, movements, aiming, anything non-task/non-rest (must be after a non-S flag)
-    const string FLAG_TASK_ANKLE = "B"; // start of task - move ankle for 5 seconds
-    const string FLAG_REST_HAND = "R"; // start of rest - squeeze ball for 5 seconds
+    const string FLAG_ANKLE = "B"; // start of task - move ankle for 5 seconds
+    const string FLAG_HAND = "R"; // start of rest - squeeze ball for 5 seconds
     const string FLAG_END_SEQUENCE = "E";
 
+    const float LSL_START_SEQUENCE = 100; // when press space/r-trigger
+    const float LSL_IDLE = 101; // countdowns, movements, aiming, anything non-task/non-rest (must be after a non-S flag)
+    const float LSL_ANKLE = 102; // start of task - move ankle for 5 seconds
+    const float LSL_HAND = 103; // start of rest - squeeze ball for 5 seconds
+    const float LSL_END_SEQUENCE = 104;
+
+    private static StreamOutlet outlet;
+    private static float[] currentSample;
+    private static float prevTimeLSL = 0;
+    private static float curTimeLSL;
+
+    public static string StreamName = "Unity.LEBCI_Stream";
+    public static string StreamType = "Unity.StreamType";
+    public static string StreamID = "LE_BCI";
+
     // Start is called before the first frame update
-    static void Start()
+    void Start()
     {
+        StreamInfo streamInfo = new StreamInfo(StreamName, StreamType, 2, 0.0, LSL.channel_format_t.cf_float32);
+        XMLElement chans = streamInfo.desc().append_child("channels");
+        chans.append_child("channel").append_child_value("label", "Marker");
+        chans.append_child("channel").append_child_value("label", "Time_manual");
+        outlet = new StreamOutlet(streamInfo);
+        currentSample = new float[2];
+
         DAQ_Output = "";
 
         started = false;
@@ -48,8 +71,8 @@ public class DAQ_Manager : MonoBehaviour
 
         if (flag != FLAG_START_SEQUENCE &&
             flag != FLAG_IDLE &&
-            flag != FLAG_TASK_ANKLE &&
-            flag != FLAG_REST_HAND &&
+            flag != FLAG_ANKLE &&
+            flag != FLAG_HAND &&
             flag != FLAG_END_SEQUENCE)
         {
             print("ERROR - Invalid flag code received");
@@ -74,6 +97,8 @@ public class DAQ_Manager : MonoBehaviour
 
             DAQ_Output += flag;
 
+            updateCurrentSample(flag);
+
             // start sequence
 
             started = true;
@@ -97,6 +122,8 @@ public class DAQ_Manager : MonoBehaviour
             // add flag
 
             DAQ_Output += flag;
+
+            updateCurrentSample(flag);
 
             // log
 
@@ -130,5 +157,51 @@ public class DAQ_Manager : MonoBehaviour
         {
             print("Saving unavailable... \nDAQ: " + DAQ_Output);
         }
+
+        //outlet.push_sample(currentSample);
+    }
+
+    private static void updateCurrentSample(string marker)
+    {
+        if (marker.Equals(FLAG_START_SEQUENCE))
+        {
+            currentSample[0] = LSL_START_SEQUENCE;
+        }
+        else if (marker.Equals(FLAG_IDLE))
+        {
+            currentSample[0] = LSL_IDLE;
+        }
+        else if(marker.Equals(FLAG_ANKLE))
+        {
+            currentSample[0] = LSL_ANKLE;
+        }
+        else if (marker.Equals(FLAG_HAND))
+        {
+            currentSample[0] = LSL_HAND;
+        }
+        else if (marker.Equals(FLAG_END_SEQUENCE))
+        {
+            currentSample[0] = LSL_END_SEQUENCE;
+        }
+
+        double timestamp = Stopwatch.GetTimestamp();
+        curTimeLSL = (float) (timestamp / Stopwatch.Frequency);
+
+        if (prevTimeLSL == 0)
+        {
+            currentSample[1] = 0;
+
+            prevTimeLSL = curTimeLSL;
+        }
+        else
+        {
+            float diff = curTimeLSL - prevTimeLSL;
+
+            currentSample[1] = diff;
+
+            prevTimeLSL = curTimeLSL;
+        }
+
+        outlet.push_sample(currentSample);
     }
 }
