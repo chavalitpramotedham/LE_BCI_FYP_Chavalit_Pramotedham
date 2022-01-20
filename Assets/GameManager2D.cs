@@ -31,7 +31,7 @@ public class GameManager2D : MonoBehaviour
         // Get Game Settings
         dataCollectionMode = GetComponent<GameSettings>().dataCollectionMode;
 
-        totalNumBlocks = GetComponent<GameSettings>().blocksIs2DGameMode.Length;
+        totalNumBlocks = GetComponent<GameSettings>().numBlocksAndIs2DGameMode.Length;
         trialsPerBlockPerType = GetComponent<GameSettings>().trialsPerBlockPerType;
 
         gamePanel2D.SetActive(false);
@@ -206,6 +206,8 @@ public class GameManager2D : MonoBehaviour
 
     private void finishBlock()
     {
+        StartCoroutine("wait1sec");
+
         // FINISH SEQUENCE
 
         DAQ_Manager.setFlag("E2D");
@@ -221,5 +223,9 @@ public class GameManager2D : MonoBehaviour
         block_running = false;
         block_started = false;
         in_trial = false;
+    }
+    private IEnumerator wait1sec()
+    {
+        yield return new WaitForSeconds(1f);
     }
 }

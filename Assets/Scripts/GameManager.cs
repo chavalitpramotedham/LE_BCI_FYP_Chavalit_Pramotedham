@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         dataCollectionMode = GetComponent<GameSettings>().dataCollectionMode;
         isLeftSide = GetComponent<GameSettings>().isLeftSide;
 
-        totalNumBlocks = GetComponent<GameSettings>().blocksIs2DGameMode.Length;
+        totalNumBlocks = GetComponent<GameSettings>().numBlocksAndIs2DGameMode.Length;
         trialsPerBlockPerType = GetComponent<GameSettings>().trialsPerBlockPerType;
 
         // Set Collection Mechanism
@@ -257,6 +257,8 @@ public class GameManager : MonoBehaviour
 
     private void finishBlock()
     {
+        StartCoroutine("wait1sec");
+
         // FINISH SEQUENCE
 
         DAQ_Manager.setFlag("E");
@@ -286,5 +288,10 @@ public class GameManager : MonoBehaviour
         block_running = false;
         block_started = false;
         in_trial = false;
+    }
+
+    private IEnumerator wait1sec()
+    {
+        yield return new WaitForSeconds(1f);
     }
 }

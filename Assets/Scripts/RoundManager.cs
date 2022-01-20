@@ -13,9 +13,9 @@ public class RoundManager : MonoBehaviour
 
     private int repetitions = 0;
 
-    public float bciTaskTime = 5f;
-    public float kickAimTime = 3f;
-    public float finishTime = .5f;
+    private float bciTaskTime = 5f;
+    private float kickAimTime = 2f;
+    private float finishTime = 1.5f;
 
     public int maxBCIRepetitions = 2;
 
@@ -245,7 +245,7 @@ public class RoundManager : MonoBehaviour
         //mainCamera.GetComponent<CameraRoundMovement>().setPlayerKick();
         gameObject.GetComponent<PointsManager>().addKick();
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1f);
 
         // Disable scripts
         gameBall.GetComponent<BallLaunch>().atShootingStage = false;

@@ -11,7 +11,7 @@ public class GameSettings : MonoBehaviour
     public bool isLeftSide = false;
 
     [SerializeField]
-    public bool[] blocksIs2DGameMode;
+    public bool[] numBlocksAndIs2DGameMode;
 
     [SerializeField]
     [Range(1, 20)]
@@ -41,9 +41,9 @@ public class GameSettings : MonoBehaviour
 
         if (!dataCollectionMode)
         {
-            for (int i = 0; i < blocksIs2DGameMode.Length; i++)
+            for (int i = 0; i < numBlocksAndIs2DGameMode.Length; i++)
             {
-                if (blocksIs2DGameMode[i])
+                if (numBlocksAndIs2DGameMode[i])
                 {
                     print("Invalid Settings. 2D game mode is only for data collection. Please Restart");
                     this.enabled = false;
@@ -58,7 +58,7 @@ public class GameSettings : MonoBehaviour
     {
         if (!inBlock)
         {
-            if (curBlockIndex < blocksIs2DGameMode.Length && Input.GetKeyDown("space"))
+            if (curBlockIndex < numBlocksAndIs2DGameMode.Length && Input.GetKeyDown("space"))
             {
                 inBlock = true;
                 nextBlock();
@@ -66,7 +66,7 @@ public class GameSettings : MonoBehaviour
         }
         else
         {
-            if (blocksIs2DGameMode[curBlockIndex])
+            if (numBlocksAndIs2DGameMode[curBlockIndex])
             {
                 if (!gm2D.block_running && gm2D.block_started)
                 {
@@ -87,7 +87,7 @@ public class GameSettings : MonoBehaviour
 
     private void nextBlock()
     {
-        if (blocksIs2DGameMode[curBlockIndex])
+        if (numBlocksAndIs2DGameMode[curBlockIndex])
         {
             gm2D.cur_block = curBlockIndex;
             gm2D.block_running = true;
@@ -108,7 +108,7 @@ public class GameSettings : MonoBehaviour
         curBlockIndex += 1;
         inBlock = false;
 
-        if (curBlockIndex == blocksIs2DGameMode.Length)
+        if (curBlockIndex == numBlocksAndIs2DGameMode.Length)
         {
             activateEndScreen();
         }

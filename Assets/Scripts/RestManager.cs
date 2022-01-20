@@ -9,7 +9,7 @@ public class RestManager : MonoBehaviour
     private int stage = -1;
 
     public GameObject restPanel;
-    public float restTime = 5f;
+    private float restTime = 5f;
 
     public GameObject countdownPanel;
 

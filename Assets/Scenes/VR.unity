@@ -4626,9 +4626,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataCollectionMode: 1
   isLeftSide: 0
-  blocksIs2DGameMode: 01000100
-  trialsPerBlockPerType: 1
-  targetMovementPoints: 3
+  numBlocksAndIs2DGameMode: 000100010001
+  trialsPerBlockPerType: 3
+  targetMovementPoints: 2
   targetMovementSpeed: 2
   curBlockIndex: 0
   inBlock: 0
@@ -4646,9 +4646,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37bda939f1eee429eb1ddb438d7b2835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bciTaskTime: 5
-  kickAimTime: 3
-  finishTime: 2.5
   maxBCIRepetitions: 2
   targetSystem: {fileID: 760105224}
   player: {fileID: 832542016}
@@ -4711,7 +4708,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restPanel: {fileID: 214959515}
-  restTime: 5
   countdownPanel: {fileID: 912735944}
   restAvatar: {fileID: 260028656}
 --- !u!114 &346494951
@@ -16174,8 +16170,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 90
-  m_fontSizeBase: 90
+  m_fontSize: 75
+  m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -20007,7 +20003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1585323895
 RectTransform:
   m_ObjectHideFlags: 0
