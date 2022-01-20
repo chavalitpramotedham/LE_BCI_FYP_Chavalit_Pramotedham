@@ -24,6 +24,7 @@ public class SoundSystemManager : MonoBehaviour
     private AudioClip clip_success;
     private AudioClip clip_failure;
     private AudioClip clip_cheer;
+    private AudioClip clip_beep_2D;
 
 
 
@@ -42,6 +43,8 @@ public class SoundSystemManager : MonoBehaviour
         clip_failure = (AudioClip)Resources.Load("Sounds/failure");
 
         clip_cheer = (AudioClip)Resources.Load("Sounds/cheer");
+
+        clip_beep_2D = (AudioClip)Resources.Load("Sounds/beep_2D");
 
         // find Audio Sources
         speaker_left_AS = speaker_left.GetComponent<AudioSource>();
@@ -106,6 +109,12 @@ public class SoundSystemManager : MonoBehaviour
 
         speaker_left_AS.PlayOneShot(clip_count);
         speaker_right_AS.PlayOneShot(clip_count);
+    }
+
+    public void beep_2D()
+    {
+        speaker_left_AS.PlayOneShot(clip_beep_2D);
+        speaker_right_AS.PlayOneShot(clip_beep_2D);
     }
 
     public void round()

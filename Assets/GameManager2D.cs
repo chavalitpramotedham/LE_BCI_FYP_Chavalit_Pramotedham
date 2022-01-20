@@ -1,14 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using UnityEngine.XR;
 
-public class GameManager : MonoBehaviour
+public class GameManager2D : MonoBehaviour
 {
     private bool dataCollectionMode;
-    private bool isLeftSide;
-    public GameObject Avatars;
     private int trialsPerBlockPerType;
     private int totalNumBlocks;
 
@@ -23,50 +19,23 @@ public class GameManager : MonoBehaviour
     public bool block_started = false;
     public bool in_trial = false;
 
-    private RoundManager roundManager;
-    private RestManager restManager;
-    private InputManager inputManager;
-    private PointsManager pointsManager;
-
-    public GameObject startPanel;
-
-    public GameObject readyPanel;
+    public GameObject gamePanel2D;
     public float readyTime = 3f;
-
-    public GameObject roundPanel;
-    
-    public GameObject pointsPanel;
-
-    public GameObject endPanel;
-
-    public GameObject ballSpawner;
 
     public GameObject soundSystem;
 
-    // Start is called before the first frame update
     void Awake()
     {
         // Everything set here will not change throughout the game!
 
         // Get Game Settings
         dataCollectionMode = GetComponent<GameSettings>().dataCollectionMode;
-        isLeftSide = GetComponent<GameSettings>().isLeftSide;
 
         totalNumBlocks = GetComponent<GameSettings>().blocksIs2DGameMode.Length;
         trialsPerBlockPerType = GetComponent<GameSettings>().trialsPerBlockPerType;
 
-        // Set Collection Mechanism
-
-        GetComponent<InputManager>().dataCollectionMode = dataCollectionMode;
-
-        // Process Avatar Direction
-        Avatars.GetComponent<Avatar_Controller>().setLeftSide(isLeftSide);
-
-        // Find objects
-        roundManager = GetComponent<RoundManager>();
-        restManager = GetComponent<RestManager>();
-        pointsManager = GetComponent<PointsManager>();
-        inputManager = GetComponent<InputManager>();
+        gamePanel2D.SetActive(false);
+        gamePanel2D.GetComponent<GamePanelBehaviour2D>().enabled = false;
     }
 
     // Update is called once per frame
@@ -89,17 +58,8 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        // Wake Scripts
-        roundManager.enabled = true;
-        restManager.enabled = true;
-        pointsManager.enabled = true;
-        inputManager.enabled = true;
-
-        startPanel.SetActive(true);
-        pointsPanel.SetActive(true);
-        readyPanel.SetActive(false);
-        roundPanel.SetActive(false);
-        endPanel.SetActive(false);
+        gamePanel2D.SetActive(true);
+        gamePanel2D.GetComponent<GamePanelBehaviour2D>().enabled = true;
 
         // Create game sequences
 
@@ -166,14 +126,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            trialsPerBlock = trialsPerBlockPerType;
-
-            trialSequence = new List<bool>();
-
-            for (int j = 0; j < trialsPerBlock; j++)
-            {
-                trialSequence.Add(true);
-            }
+            print("ERROR. 2D cannot be used in non-data-collection mode");
+            return;
         }
 
         StartCoroutine("startBlock");
@@ -183,28 +137,18 @@ public class GameManager : MonoBehaviour
     {
         // START Sequence (S)
 
-        DAQ_Manager.setFlag("S");
+        DAQ_Manager.setFlag("S2D");
 
-        startPanel.SetActive(false);
+        int i = 0;
 
-        soundSystem.GetComponent<SoundSystemManager>().start_sequence();
-
-        float normalizedTime = 0;
-
-        while (normalizedTime <= 1f)
+        while (i < readyTime)
         {
-            readyPanel.SetActive(true);
-
-            normalizedTime += Time.deltaTime / readyTime;
-
-            int roundedTime = 1 + (int)(readyTime - (normalizedTime * readyTime));
-
-            readyPanel.GetComponent<ReadyPanelBehavior>().updateCountdown(roundedTime);
-
-            yield return null;
+            gamePanel2D.GetComponent<GamePanelBehaviour2D>().updateCountdown((int)(readyTime - i));
+            yield return new WaitForSeconds(1f);
+            i += 1;
         }
 
-        readyPanel.SetActive(false);
+        gamePanel2D.GetComponent<GamePanelBehaviour2D>().updateCountdown(0);
 
         block_started = true;
         cur_trial = 0;
@@ -214,74 +158,65 @@ public class GameManager : MonoBehaviour
     private IEnumerator nextTrial()
     {
         in_trial = true;
-        roundPanel.SetActive(true);
-        roundPanel.GetComponent<RoundPanelBehavior>().updateUI(cur_block, totalNumBlocks, cur_trial, trialsPerBlock);
 
         bool nextRoundActive = trialSequence[cur_trial];
+        print("SEQ: " + cur_block + " ROUND: " + cur_trial + " TYPE: " + trialSequence[cur_trial]);
 
-        print("SEQ: "+cur_block+ " ROUND: "+cur_trial + " TYPE: "+ trialSequence[cur_trial]);
+        // Random wait for 3-5 seconds
 
         System.Random r = new System.Random();
 
         yield return new WaitForSeconds(r.Next(3, 6));
 
-        ballSpawner.GetComponent<BallSpawner>().startRound(nextRoundActive);
+        // Countdown for ready
 
-        for (int i = 0; i < 3; i++)
-        {
-            soundSystem.GetComponent<SoundSystemManager>().count();
-            yield return new WaitForSeconds(1f);
-        }
+        soundSystem.GetComponent<SoundSystemManager>().beep_2D();
+        gamePanel2D.GetComponent<GamePanelBehaviour2D>().setReady(cur_block, totalNumBlocks, cur_trial, trialsPerBlock);
 
-        roundPanel.SetActive(false);
+        yield return new WaitForSeconds(3f);
+
+        // show BCI Indicator
 
         if (nextRoundActive)
         {
-            soundSystem.GetComponent<SoundSystemManager>().round();
-            roundManager.startRound();
+            DAQ_Manager.setFlag("B2D");
         }
         else
         {
-            soundSystem.GetComponent<SoundSystemManager>().rest();
-            restManager.startRest();
+            DAQ_Manager.setFlag("R2D");
         }
+
+        soundSystem.GetComponent<SoundSystemManager>().beep_2D();
+        gamePanel2D.GetComponent<GamePanelBehaviour2D>().setBCIIndicator(nextRoundActive);
+
+        yield return new WaitForSeconds(5f);
+
+        DAQ_Manager.setFlag("I2D");
+        soundSystem.GetComponent<SoundSystemManager>().beep_2D();
+        gamePanel2D.GetComponent<GamePanelBehaviour2D>().deactivateAll();
+
+        finishTrial();
     }
 
     public void finishTrial()
     {
         cur_trial += 1;
         in_trial = false;
-
-        ballSpawner.GetComponent<BallSpawner>().resetRound();
     }
 
     private void finishBlock()
     {
         // FINISH SEQUENCE
 
-        DAQ_Manager.setFlag("E");
+        DAQ_Manager.setFlag("E2D");
 
         block_running = false;
-
-        soundSystem.GetComponent<SoundSystemManager>().finish_sequence();
-
-        pointsPanel.SetActive(true);
-        readyPanel.SetActive(false);
-        roundPanel.SetActive(false);
     }
 
     private void OnDisable()
     {
-        roundManager.enabled = false;
-        restManager.enabled = false;
-        pointsManager.enabled = false;
-        inputManager.enabled = false;
-
-        startPanel.SetActive(false);
-        pointsPanel.SetActive(false);
-        readyPanel.SetActive(false);
-        roundPanel.SetActive(false);
-        endPanel.SetActive(false);
+        gamePanel2D.SetActive(false);
+        gamePanel2D.GetComponent<GamePanelBehaviour2D>().enabled = false;
 
         block_running = false;
         block_started = false;

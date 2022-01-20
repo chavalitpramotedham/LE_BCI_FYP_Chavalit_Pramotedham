@@ -280,6 +280,6 @@ public class RoundManager : MonoBehaviour
         countdownPanel.GetComponent<CountdownPanelBehavior>().resetUI();
         floodLights.GetComponent<FloodLightController>().setFloodLightsInactive();
 
-        GetComponent<GameManager>().finishRound();
+        GetComponent<GameManager>().finishTrial();
     }
 }

@@ -7,6 +7,8 @@ using LSL;
 
 public class DAQ_Manager : MonoBehaviour
 {
+    private GameSettings gs;
+
     private static string DAQ_Output = "";
 
     private static string last_flag;
@@ -14,6 +16,8 @@ public class DAQ_Manager : MonoBehaviour
     private static float time_since_last;
     private static bool started;
     private static bool in_activity;
+
+    // Event Markers for VR
 
     const string FLAG_START_SEQUENCE = "S"; // when press space/r-trigger
     const string FLAG_IDLE = "I"; // countdowns, movements, aiming, anything non-task/non-rest (must be after a non-S flag)
@@ -27,6 +31,20 @@ public class DAQ_Manager : MonoBehaviour
     const float LSL_HAND = 103; // start of rest - squeeze ball for 5 seconds
     const float LSL_END_SEQUENCE = 104;
 
+    // Event Markers for VR
+
+    const string FLAG_START_SEQUENCE_2D = "S2D"; // when press space/r-trigger
+    const string FLAG_IDLE_2D = "I2D"; // countdowns, movements, aiming, anything non-task/non-rest (must be after a non-S flag)
+    const string FLAG_ANKLE_2D = "B2D"; // start of task - move ankle for 5 seconds
+    const string FLAG_HAND_2D = "R2D"; // start of rest - squeeze ball for 5 seconds
+    const string FLAG_END_SEQUENCE_2D = "E2D";
+
+    const float LSL_START_SEQUENCE_2D = 200; // when press space/r-trigger
+    const float LSL_IDLE_2D = 201; // countdowns, movements, aiming, anything non-task/non-rest (must be after a non-S flag)
+    const float LSL_ANKLE_2D = 202; // start of task - move ankle for 5 seconds
+    const float LSL_HAND_2D = 203; // start of rest - squeeze ball for 5 seconds
+    const float LSL_END_SEQUENCE_2D = 204;
+
     private static StreamOutlet outlet;
     private static float[] currentSample;
     private static float prevTimeLSL = 0;
@@ -39,6 +57,16 @@ public class DAQ_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gs = GetComponent<GameSettings>();
+
+        if (!gs.dataCollectionMode)
+        {
+            this.enabled = false;
+            return;
+        }
+
+        print("DAQ activated");
+
         StreamInfo streamInfo = new StreamInfo(StreamName, StreamType, 2, 0.0, LSL.channel_format_t.cf_float32);
         XMLElement chans = streamInfo.desc().append_child("channels");
         chans.append_child("channel").append_child_value("label", "Marker");
@@ -73,7 +101,12 @@ public class DAQ_Manager : MonoBehaviour
             flag != FLAG_IDLE &&
             flag != FLAG_ANKLE &&
             flag != FLAG_HAND &&
-            flag != FLAG_END_SEQUENCE)
+            flag != FLAG_END_SEQUENCE &&
+            flag != FLAG_START_SEQUENCE_2D &&
+            flag != FLAG_IDLE_2D &&
+            flag != FLAG_ANKLE_2D &&
+            flag != FLAG_HAND_2D &&
+            flag != FLAG_END_SEQUENCE_2D)
         {
             print("ERROR - Invalid flag code received");
             return;
@@ -81,7 +114,7 @@ public class DAQ_Manager : MonoBehaviour
 
         // if start
 
-        if (flag.Equals(FLAG_START_SEQUENCE))
+        if (flag.Equals(FLAG_START_SEQUENCE) || flag.Equals(FLAG_START_SEQUENCE_2D))
         {
             // log start time
 
@@ -114,7 +147,7 @@ public class DAQ_Manager : MonoBehaviour
         {
             // add time
 
-            DAQ_Output += time_since_last.ToString("0.000000");
+            DAQ_Output += (" " + time_since_last.ToString("0.000000"));
             DAQ_Output += "\n";
 
             time_since_last = 0;
@@ -132,7 +165,7 @@ public class DAQ_Manager : MonoBehaviour
 
         // continue
 
-        if (flag.Equals(FLAG_END_SEQUENCE))
+        if (flag.Equals(FLAG_END_SEQUENCE) || flag.Equals(FLAG_END_SEQUENCE_2D))
         {
             DAQ_Output += "\n";
 
@@ -157,8 +190,6 @@ public class DAQ_Manager : MonoBehaviour
         {
             print("Saving unavailable... \nDAQ: " + DAQ_Output);
         }
-
-        //outlet.push_sample(currentSample);
     }
 
     private static void updateCurrentSample(string marker)
@@ -182,6 +213,26 @@ public class DAQ_Manager : MonoBehaviour
         else if (marker.Equals(FLAG_END_SEQUENCE))
         {
             currentSample[0] = LSL_END_SEQUENCE;
+        }
+        if (marker.Equals(FLAG_START_SEQUENCE_2D))
+        {
+            currentSample[0] = LSL_START_SEQUENCE_2D;
+        }
+        else if (marker.Equals(FLAG_IDLE_2D))
+        {
+            currentSample[0] = LSL_IDLE_2D;
+        }
+        else if (marker.Equals(FLAG_ANKLE_2D))
+        {
+            currentSample[0] = LSL_ANKLE_2D;
+        }
+        else if (marker.Equals(FLAG_HAND_2D))
+        {
+            currentSample[0] = LSL_HAND_2D;
+        }
+        else if (marker.Equals(FLAG_END_SEQUENCE_2D))
+        {
+            currentSample[0] = LSL_END_SEQUENCE_2D;
         }
 
         double timestamp = Stopwatch.GetTimestamp();

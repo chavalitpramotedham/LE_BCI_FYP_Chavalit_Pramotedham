@@ -16,6 +16,7 @@ public class RestManager : MonoBehaviour
     public GameObject restAvatar;
 
     // Start is called before the first frame update
+
     void Start()
     {
         started = false;
@@ -78,7 +79,7 @@ public class RestManager : MonoBehaviour
         restAvatar.GetComponent<Rest_Movement>().deactivate();
         restAvatar.SetActive(false);
 
-        GetComponent<GameManager>().finishRound();
+        GetComponent<GameManager>().finishTrial();
     }
 
 
