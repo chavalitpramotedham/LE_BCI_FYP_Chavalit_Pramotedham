@@ -8,6 +8,9 @@ public class GameSettings : MonoBehaviour
     public bool dataCollectionMode = true;
 
     [SerializeField]
+    public bool engagementMode = true;
+
+    [SerializeField]
     public bool isLeftSide = false;
 
     [SerializeField]
@@ -32,6 +35,7 @@ public class GameSettings : MonoBehaviour
     private GameManager2D gm2D;
 
     public GameObject blockStartPanel;
+    public GameObject blockStartPanelVR;
     public GameObject gameEndPanel;
 
     void Awake()
@@ -121,6 +125,7 @@ public class GameSettings : MonoBehaviour
     private void activateStartScreen()
     {
         blockStartPanel.SetActive(true);
+        blockStartPanelVR.SetActive(true);
         gameEndPanel.SetActive(false);
         blockStartPanel.GetComponent<BlockStartPanelBehavior>().updateBlockNumUI(curBlockIndex);
     }
@@ -128,6 +133,7 @@ public class GameSettings : MonoBehaviour
     private void deactiveStartScreen()
     {
         blockStartPanel.SetActive(false);
+        blockStartPanelVR.SetActive(false);
         blockStartPanel.GetComponent<BlockStartPanelBehavior>().updateBlockNumUI(curBlockIndex);
     }
 
@@ -135,6 +141,7 @@ public class GameSettings : MonoBehaviour
     {
         gameEndPanel.SetActive(true);
         blockStartPanel.SetActive(false);
+        blockStartPanelVR.SetActive(false);
         print("END");
     }
 }

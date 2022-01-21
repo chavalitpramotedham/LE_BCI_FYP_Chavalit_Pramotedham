@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4625,14 +4625,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataCollectionMode: 1
+  engagementMode: 0
   isLeftSide: 0
-  numBlocksAndIs2DGameMode: 000100010001
-  trialsPerBlockPerType: 3
+  numBlocksAndIs2DGameMode: 00000000000101010101
+  trialsPerBlockPerType: 20
   targetMovementPoints: 2
   targetMovementSpeed: 2
   curBlockIndex: 0
   inBlock: 0
   blockStartPanel: {fileID: 968491401}
+  blockStartPanelVR: {fileID: 2012755992}
   gameEndPanel: {fileID: 1987315233}
 --- !u!114 &346494947
 MonoBehaviour:
@@ -4646,6 +4648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37bda939f1eee429eb1ddb438d7b2835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  engagementMode: 0
   maxBCIRepetitions: 2
   targetSystem: {fileID: 760105224}
   player: {fileID: 832542016}
@@ -5488,7 +5491,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press R-Trigger to Start
+  m_text: Press <SPACE> to Start
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15315,7 +15318,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 316973686}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -20003,7 +20006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1585323895
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20749,7 +20752,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 316973686}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1

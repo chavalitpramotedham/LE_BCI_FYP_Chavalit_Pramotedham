@@ -8,6 +8,8 @@ public class RoundManager : MonoBehaviour
 {
     private bool started = false;
 
+    public bool engagementMode;
+
     private int stage = 0;
     private bool inStage = false;
 
@@ -104,7 +106,9 @@ public class RoundManager : MonoBehaviour
 
         inStage = true;
 
-        targetManager.startTargetRound();
+        if (engagementMode){
+            targetManager.startTargetRound();
+        }
 
         float duration = 0.5f;
         float normalizedTime = 0;
@@ -151,8 +155,13 @@ public class RoundManager : MonoBehaviour
         roundAvatar.GetComponent<Round_Movement>().deactivate();
         roundAvatar.SetActive(false);
 
-        stage = 2;
-        inStage = false;
+        if (engagementMode){
+            stage = 2;
+            inStage = false;
+        }
+        else{
+            endStages();
+        }
     }
 
 
@@ -267,6 +276,24 @@ public class RoundManager : MonoBehaviour
         player.GetComponent<playerAnimationController>().setFinish(finishTime);
 
         yield return new WaitForSeconds(finishTime);
+
+        endStages();
+
+        // started = false;
+        // inStage = false;
+        // stage = 0;
+
+        // bciPanel.SetActive(false);
+        // kickAimPanel.SetActive(false);
+
+        // countdownPanel.GetComponent<CountdownPanelBehavior>().resetUI();
+        // floodLights.GetComponent<FloodLightController>().setFloodLightsInactive();
+
+        // GetComponent<GameManager>().finishTrial();
+    }
+
+    private void endStages(){
+        DAQ_Manager.setFlag("I");
 
         targetManager.isActivatedForRound = false;
 

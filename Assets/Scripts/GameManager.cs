@@ -7,6 +7,7 @@ using UnityEngine.XR;
 public class GameManager : MonoBehaviour
 {
     private bool dataCollectionMode;
+    private bool engagementMode;
     private bool isLeftSide;
     public GameObject Avatars;
     private int trialsPerBlockPerType;
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
 
         // Get Game Settings
         dataCollectionMode = GetComponent<GameSettings>().dataCollectionMode;
+        engagementMode = GetComponent<GameSettings>().engagementMode;
         isLeftSide = GetComponent<GameSettings>().isLeftSide;
 
         totalNumBlocks = GetComponent<GameSettings>().numBlocksAndIs2DGameMode.Length;
@@ -64,9 +66,13 @@ public class GameManager : MonoBehaviour
 
         // Find objects
         roundManager = GetComponent<RoundManager>();
+        roundManager.engagementMode = engagementMode;
+
         restManager = GetComponent<RestManager>();
         pointsManager = GetComponent<PointsManager>();
         inputManager = GetComponent<InputManager>();
+
+        pointsPanel.SetActive(true);
     }
 
     // Update is called once per frame
@@ -95,7 +101,6 @@ public class GameManager : MonoBehaviour
         pointsManager.enabled = true;
         inputManager.enabled = true;
 
-        startPanel.SetActive(true);
         pointsPanel.SetActive(true);
         readyPanel.SetActive(false);
         roundPanel.SetActive(false);

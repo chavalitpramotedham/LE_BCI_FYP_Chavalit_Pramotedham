@@ -96,7 +96,7 @@ public class Rest_Movement : MonoBehaviour
             if (normalizedTime > 0.75f && !squeaked)
             {
                 squeaked = true;
-                restBall.GetComponent<AudioSource>().PlayOneShot(squeeze_in);
+                // restBall.GetComponent<AudioSource>().PlayOneShot(squeeze_in);
             }
 
             yield return null;
@@ -114,7 +114,7 @@ public class Rest_Movement : MonoBehaviour
             if (normalizedTime < 0.5f && !squeaked)
             {
                 squeaked = true;
-                restBall.GetComponent<AudioSource>().PlayOneShot(squeeze_out);
+                // restBall.GetComponent<AudioSource>().PlayOneShot(squeeze_out);
             }
 
             yield return null;

@@ -46,16 +46,16 @@ public class GamePanelBehaviour2D : MonoBehaviour
     {
         ready.SetActive(false);
         cross.SetActive(true);
-        roundIndicatorText.SetActive(true);
+        // roundIndicatorText.SetActive(true);
 
-        string display = "Block " + (curBlock + 1).ToString() + "/" + totalBlocks.ToString() + " – Task " + (curTrial + 1).ToString() + "/" + totalTrials.ToString();
-        roundIndicatorText.GetComponent<TextMeshProUGUI>().SetText(display);
+        // string display = "Block " + (curBlock + 1).ToString() + "/" + totalBlocks.ToString() + " ï¿½ Task " + (curTrial + 1).ToString() + "/" + totalTrials.ToString();
+        // roundIndicatorText.GetComponent<TextMeshProUGUI>().SetText(display);
     }
 
     public void setBCIIndicator(bool isAnkleBCI)
     {
         cross.SetActive(false);
-        roundIndicatorText.SetActive(false);
+        // roundIndicatorText.SetActive(false);
 
         if (isAnkleBCI)
         {
