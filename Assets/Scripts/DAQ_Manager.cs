@@ -184,11 +184,16 @@ public class DAQ_Manager : MonoBehaviour
     {
         try
         {
-            System.IO.File.WriteAllText(@"C:\Users\chava\OneDrive\Desktop\lebci_log.txt", DAQ_Output);
+            System.IO.File.WriteAllText(@"C:\Users\CBCR-EXPT\Desktop\Chavalit_FYP\lebci_log.txt", DAQ_Output);
         }
         catch(Exception e)
         {
-            print("Saving unavailable... \nDAQ: " + DAQ_Output);
+            try{
+                System.IO.File.WriteAllText(@"C:\Users\chava\OneDrive\Desktop\lebci_log.txt", DAQ_Output);
+            }
+            catch(Exception e2){
+                print("Saving unavailable... \nDAQ: " + DAQ_Output);
+            }
         }
     }
 
