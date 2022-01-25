@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3722,7 +3722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &260028657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4333,6 +4333,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7448815bd5148434682b3d931066cd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Camera: {fileID: 0}
+  m_OriginBaseGameObject: {fileID: 329592080}
+  m_CameraFloorOffsetObject: {fileID: 0}
+  m_RequestedTrackingOriginMode: 0
+  m_CameraYOffset: 1.1176
+  m_CameraGameObject: {fileID: 0}
 --- !u!4 &329592082
 Transform:
   m_ObjectHideFlags: 0
@@ -4622,7 +4628,7 @@ MonoBehaviour:
   engagementMode: 0
   isLeftSide: 0
   numBlocksAndIs2DGameMode: 00000000000101010101
-  trialsPerBlockPerType: 5
+  trialsPerBlockPerType: 20
   targetMovementPoints: 2
   targetMovementSpeed: 2
   curBlockIndex: 0
