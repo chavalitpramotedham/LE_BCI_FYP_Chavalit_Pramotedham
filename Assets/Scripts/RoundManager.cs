@@ -86,7 +86,9 @@ public class RoundManager : MonoBehaviour
                     break;
 
                 case 2:
-                    StartCoroutine("startStage2");
+                    if (!inputManager.isListening){
+                        StartCoroutine("startStage2");
+                    }
                     break;
 
                 case 3:
@@ -155,6 +157,9 @@ public class RoundManager : MonoBehaviour
         roundAvatar.GetComponent<Round_Movement>().deactivate();
         roundAvatar.SetActive(false);
 
+        DAQ_Manager.setFlag("I");
+        countdownPanel.GetComponent<CountdownPanelBehavior>().awaitResult();
+
         if (engagementMode){
             stage = 2;
             inStage = false;
@@ -172,6 +177,9 @@ public class RoundManager : MonoBehaviour
         DAQ_Manager.setFlag("I");
 
         inStage = true;
+
+        print("STARTING S2");
+        yield return new WaitForSeconds(2f);
 
         if (inputManager.getActionDetected() || repetitions == maxBCIRepetitions)
         {

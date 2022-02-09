@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace LSL
+namespace lsl
 {
     /// <summary>
     /// C# API for the lab streaming layer.

@@ -11,6 +11,7 @@ public class CountdownPanelBehavior : MonoBehaviour
     public GameObject CD;
     public GameObject Success;
     public GameObject Failure;
+    public GameObject Waiting;
 
     public TextMeshProUGUI titleText;
 
@@ -75,18 +76,25 @@ public class CountdownPanelBehavior : MonoBehaviour
         CD.SetActive(false);
     }
 
+    public void awaitResult(){
+        titleText.SetText("BCI Task");
+
+        CD.SetActive(false);
+        Waiting.SetActive(true);
+    }
+
     public void setResult(bool success)
     {
         titleText.SetText("BCI Task");
 
         if (success)
         {
-            CD.SetActive(false);
+            Waiting.SetActive(false);
             Success.SetActive(true);
         }
         else
         {
-            CD.SetActive(false);
+            Waiting.SetActive(false);
             Failure.SetActive(true);
         }
     }
