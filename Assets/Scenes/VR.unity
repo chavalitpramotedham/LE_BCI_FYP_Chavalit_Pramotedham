@@ -4627,7 +4627,7 @@ MonoBehaviour:
   dataCollectionMode: 1
   engagementMode: 0
   isLeftSide: 0
-  numBlocksAndIs2DGameMode: 00000000000101010101
+  numBlocksAndIs2DGameMode: 01010101010000000000
   trialsPerBlockPerType: 20
   targetMovementPoints: 2
   targetMovementSpeed: 2

@@ -17,6 +17,8 @@ public class DAQ_Manager : MonoBehaviour
     private static bool started;
     private static bool in_activity;
 
+    private int count = 0;
+
     // Event Markers for VR
 
     const string FLAG_START_SEQUENCE = "S"; // when press space/r-trigger
@@ -54,16 +56,23 @@ public class DAQ_Manager : MonoBehaviour
     public static string StreamType = "Unity.StreamType";
     public static string StreamID = "LE_BCI";
 
+    private static StreamOutlet outlet_trial;
+    private static float[] currentSample_trial;
+
+    public static string StreamName_trial = "BrainVision RDA";
+    public static string StreamType_trial = "Unity.StreamType";
+    public static string StreamID_trial = "LE_BCI_trial";
+
     // Start is called before the first frame update
     void Start()
     {
         gs = GetComponent<GameSettings>();
 
-        if (!gs.dataCollectionMode)
-        {
-            this.enabled = false;
-            return;
-        }
+        // if (!gs.dataCollectionMode)
+        // {
+        //     this.enabled = false;
+        //     return;
+        // }
 
         print("DAQ activated");
 
@@ -73,6 +82,12 @@ public class DAQ_Manager : MonoBehaviour
         chans.append_child("channel").append_child_value("label", "Time_manual");
         outlet = new StreamOutlet(streamInfo);
         currentSample = new float[2];
+
+        StreamInfo streamInfo_trial = new StreamInfo(StreamName_trial, StreamType_trial, 1, 0.0, LSL.channel_format_t.cf_float32);
+        XMLElement chans_trial = streamInfo_trial.desc().append_child("channels");
+        chans_trial.append_child("channel").append_child_value("label", "Data");
+        outlet_trial = new StreamOutlet(streamInfo_trial);
+        currentSample_trial = new float[1];
 
         DAQ_Output = "";
 
@@ -89,6 +104,10 @@ public class DAQ_Manager : MonoBehaviour
         {
             time_since_last += Time.deltaTime;
         }
+
+        currentSample_trial[0] = count;
+        count += 1;
+        outlet_trial.push_sample(currentSample_trial);
     }
 
     public static void setFlag(string flag)
