@@ -76,14 +76,14 @@ public class DAQ_Manager : MonoBehaviour
 
         print("DAQ activated");
 
-        StreamInfo streamInfo = new StreamInfo(StreamName, StreamType, 2, 0.0, LSL.channel_format_t.cf_float32);
+        StreamInfo streamInfo = new StreamInfo(StreamName, StreamType, 2, 0.0, LSL.channel_format_t.cf_float32, StreamID);
         XMLElement chans = streamInfo.desc().append_child("channels");
         chans.append_child("channel").append_child_value("label", "Marker");
         chans.append_child("channel").append_child_value("label", "Time_manual");
         outlet = new StreamOutlet(streamInfo);
         currentSample = new float[2];
 
-        StreamInfo streamInfo_trial = new StreamInfo(StreamName_trial, StreamType_trial, 1, 0.0, LSL.channel_format_t.cf_float32);
+        StreamInfo streamInfo_trial = new StreamInfo(StreamName_trial, StreamType_trial, 1, 0.0, LSL.channel_format_t.cf_float32, StreamID_trial);
         XMLElement chans_trial = streamInfo_trial.desc().append_child("channels");
         chans_trial.append_child("channel").append_child_value("label", "Data");
         outlet_trial = new StreamOutlet(streamInfo_trial);
