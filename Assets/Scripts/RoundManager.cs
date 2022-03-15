@@ -158,9 +158,9 @@ public class RoundManager : MonoBehaviour
         roundAvatar.SetActive(false);
 
         DAQ_Manager.setFlag("I");
-        countdownPanel.GetComponent<CountdownPanelBehavior>().awaitResult();
 
         if (engagementMode){
+            countdownPanel.GetComponent<CountdownPanelBehavior>().awaitResult();
             stage = 2;
             inStage = false;
         }

@@ -1450,7 +1450,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &152671940
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4677,10 +4677,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca031e3e884854939b38bddcae0cc95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataCollectionMode: 0
-  engagementMode: 1
+  dataCollectionMode: 1
+  engagementMode: 0
   isLeftSide: 0
-  numBlocksAndIs2DGameMode: 00000000000000000000
+  numBlocksAndIs2DGameMode: 00000000000101010101
   trialsPerBlockPerType: 20
   targetMovementPoints: 2
   targetMovementSpeed: 2
@@ -4780,6 +4780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe5bc77df06746efbd1192cb01e2223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugUnityAlone: 0
 --- !u!114 &346494952
 MonoBehaviour:
   m_ObjectHideFlags: 0

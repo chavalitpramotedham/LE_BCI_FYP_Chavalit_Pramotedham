@@ -35,7 +35,7 @@ public class CountdownPanelBehavior : MonoBehaviour
 
         if (stage == 1)
         {
-            titleText.SetText("BCI Task");
+            titleText.SetText("Ankle MI");
         }
         else if (stage == 3)
         {
@@ -43,7 +43,7 @@ public class CountdownPanelBehavior : MonoBehaviour
         }
         else if (stage == -1)
         {
-            titleText.SetText("Rest");
+            titleText.SetText("Hand MI");
         }
 
         CD.SetActive(true);

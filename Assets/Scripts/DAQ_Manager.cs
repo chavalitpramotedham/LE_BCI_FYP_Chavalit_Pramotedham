@@ -9,6 +9,8 @@ public class DAQ_Manager : MonoBehaviour
 {
     private GameSettings gs;
 
+    public bool debugUnityAlone = false;
+
     private static string DAQ_Output = "";
 
     private static string last_flag;
@@ -83,11 +85,13 @@ public class DAQ_Manager : MonoBehaviour
         outlet = new StreamOutlet(streamInfo);
         currentSample = new float[2];
 
-        StreamInfo streamInfo_trial = new StreamInfo(StreamName_trial, StreamType_trial, 1, 0.0, lsl.channel_format_t.cf_float32, StreamID_trial);
-        XMLElement chans_trial = streamInfo_trial.desc().append_child("channels");
-        chans_trial.append_child("channel").append_child_value("label", "Data");
-        outlet_trial = new StreamOutlet(streamInfo_trial);
-        currentSample_trial = new float[1];
+        if (debugUnityAlone){
+            StreamInfo streamInfo_trial = new StreamInfo(StreamName_trial, StreamType_trial, 1, 0.0, lsl.channel_format_t.cf_float32, StreamID_trial);
+            XMLElement chans_trial = streamInfo_trial.desc().append_child("channels");
+            chans_trial.append_child("channel").append_child_value("label", "Data");
+            outlet_trial = new StreamOutlet(streamInfo_trial);
+            currentSample_trial = new float[1];
+        }
 
         DAQ_Output = "";
 
@@ -105,9 +109,12 @@ public class DAQ_Manager : MonoBehaviour
             time_since_last += Time.deltaTime;
         }
 
-        currentSample_trial[0] = count;
-        count += 1;
-        outlet_trial.push_sample(currentSample_trial);
+        if (debugUnityAlone){
+            currentSample_trial[0] = count;
+            count += 1;
+            outlet_trial.push_sample(currentSample_trial);
+        }
+        
     }
 
     public static void setFlag(string flag)
